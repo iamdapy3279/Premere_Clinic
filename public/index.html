@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Premere Clinic · Reception Console</title>
+  <link rel="icon" href="/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+    /* Strict monochrome scrollbar fallback */
+    * { scrollbar-width: thin; scrollbar-color: #c8c5ca #f3f3f3; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "error": "#ba1a1a",
+            "tertiary-container": "#1a1b22",
+            "on-tertiary-container": "#83838c",
+            "secondary-container": "#e4e1e6",
+            "on-primary": "#ffffff",
+            "on-surface": "#1a1c1c",
+            "on-tertiary-fixed-variant": "#46464e",
+            "inverse-surface": "#2f3131",
+            "on-primary-fixed-variant": "#474649",
+            "on-secondary-fixed-variant": "#47464a",
+            "inverse-on-surface": "#f0f1f1",
+            "tertiary": "#000000",
+            "on-tertiary-fixed": "#1a1b22",
+            "surface-container-low": "#f3f3f3",
+            "surface-variant": "#e2e2e2",
+            "error-container": "#ffdad6",
+            "surface-tint": "#5f5e60",
+            "surface-container": "#eeeeee",
+            "inverse-primary": "#c8c6c8",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#e4e1e6",
+            "primary": "#000000",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-container": "#858386",
+            "on-surface-variant": "#47464a",
+            "outline-variant": "#c8c5ca",
+            "on-secondary-container": "#656467",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#e3e1ec",
+            "tertiary-fixed-dim": "#c6c5cf",
+            "surface-dim": "#dadada",
+            "surface-bright": "#f9f9f9",
+            "primary-fixed-dim": "#c8c6c8",
+            "surface": "#f9f9f9",
+            "surface-container-high": "#e8e8e8",
+            "surface-container-highest": "#e2e2e2",
+            "secondary": "#5f5e61",
+            "on-tertiary": "#ffffff",
+            "background": "#f9f9f9",
+            "secondary-fixed-dim": "#c8c5ca",
+            "on-secondary-fixed": "#1b1b1e",
+            "on-error": "#ffffff",
+            "primary-fixed": "#e5e1e4",
+            "on-background": "#1a1c1c",
+            "on-primary-fixed": "#1c1b1d",
+            "outline": "#78767b",
+            "primary-container": "#1c1b1d"
+          },
+          borderRadius: {
+            "DEFAULT": "0px",
+            "none": "0px",
+            "sm": "0px",
+            "md": "0px",
+            "lg": "0px",
+            "xl": "0px",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-lg": "16px",
+            "gutter": "12px",
+            "gutter-desktop": "16px",
+            "space-xl": "24px",
+            "space-2xl": "32px",
+            "space-xs": "4px",
+            "space-sm": "8px",
+            "margin-desktop": "24px",
+            "margin": "16px",
+            "space-md": "12px"
+          },
+          fontFamily: {
+            "mono-data": ["JetBrains Mono", "monospace"],
+            "headline-xl": ["Inter", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "code-param": ["JetBrains Mono", "monospace"],
+            "headline-md": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "headline-lg": ["Inter", "sans-serif"]
+          },
+          fontSize: {
+            "mono-data": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-xl": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "code-param": ["11px", { "lineHeight": "14px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-md": ["15px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "body-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "body-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.015em", "fontWeight": "600" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary">
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest z-50 flex flex-col border-r border-outline-variant">
+    <nav class="flex-1 px-space-sm py-space-md space-y-1 overflow-y-auto" id="sideNav">
+      <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm bg-primary text-on-primary font-headline-sm transition-none border border-transparent cursor-pointer" data-view="intake" href="#/intake">
+        <span class="material-symbols-outlined text-[18px]">patient_list</span>
+        <span>Intake &amp; Queue</span>
+      </a>
+      <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm text-on-surface-variant font-label-md text-label-md transition-none hover:bg-surface-container-high hover:text-on-surface border border-transparent cursor-pointer" data-view="dispatch" href="#/dispatch">
+        <span class="material-symbols-outlined text-[18px]">record_voice_over</span>
+        <span>Voice Dispatch</span>
+      </a>
+      <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm text-on-surface-variant font-label-md text-label-md transition-none hover:bg-surface-container-high hover:text-on-surface border border-transparent cursor-pointer" data-view="kanban" href="#/kanban">
+        <span class="material-symbols-outlined text-[18px]">event_repeat</span>
+        <span>Schedule Matrix</span>
+      </a>
+      <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm text-on-surface-variant font-label-md text-label-md transition-none hover:bg-surface-container-high hover:text-on-surface border border-transparent cursor-pointer" data-view="transcripts" href="#/transcripts">
+        <span class="material-symbols-outlined text-[18px]">receipt_long</span>
+        <span>Call Logs &amp; Cost Ledger</span>
+      </a>
+      <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm text-on-surface-variant font-label-md text-label-md transition-none hover:bg-surface-container-high hover:text-on-surface border border-transparent cursor-pointer" data-view="protocols" href="#/protocols">
+        <span class="material-symbols-outlined text-[18px]">settings_voice</span>
+        <span>Agent Protocols</span>
+      </a>
+    </nav>
+    <div class="p-space-md border-t border-outline-variant bg-surface-container-low font-mono-data text-code-param space-y-1.5">
+      <div class="flex items-center justify-between text-on-surface">
+        <span class="font-bold uppercase tracking-wider text-[10px] text-on-surface-variant">System Gateway</span>
+        <span class="flex items-center gap-1 text-[11px] font-semibold" id="sysModeLabel"><span class="w-1.5 h-1.5 bg-primary"></span>LIVE</span>
+      </div>
+      <div class="text-[11px] text-on-surface-variant truncate" id="sysCampaignLabel">Campaign: Ready</div>
+      <div class="pt-1 border-t border-outline-variant flex items-center justify-between">
+        <span class="text-[10px] text-on-surface-variant uppercase font-bold">Auto-Dial (15m):</span>
+        <button id="sidebarAutoToggleBtn" onclick="toggleGlobalAutoDispatch()" class="px-1.5 py-0.5 border border-primary bg-primary text-on-primary text-[10px] font-bold cursor-pointer transition-none" title="Toggle 15-minute autonomous runner">
+          ON
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN VIEWPORT -->
+  <div class="pl-64 min-h-screen flex flex-col">
+    <main class="relative flex-1 bg-surface">
+
+      <!-- ========================================================================= -->
+      <!-- VIEW 1: PATIENT INTAKE & QUEUE VIEW (1:1 clone of patient_intake_view)   -->
+      <!-- ========================================================================= -->
+      <section id="view-intake" class="app-view flex flex-col w-full">
+        <!-- Top Command & Filter Bar -->
+        <div class="w-full bg-surface-container-lowest border-b border-outline-variant px-space-xl py-space-lg">
+          <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-lg">
+            <div class="flex flex-wrap items-center gap-space-md w-full justify-between">
+              
+              <div class="flex items-center gap-space-md">
+                <!-- Search filter -->
+                <div class="relative min-w-[280px] sm:min-w-[320px]">
+                  <span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+                  <input class="w-full h-8 pl-9 pr-space-sm bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary transition-none" id="registrySearch" placeholder="Filter by name, phone (+91), or session..." type="text">
+                </div>
+
+                <!-- View switcher -->
+                <div class="inline-flex border border-outline-variant bg-surface-container-low p-0.5" role="group">
+                  <button class="view-btn flex items-center gap-space-xs px-space-md py-1 font-label-md text-label-md bg-surface-container-lowest text-primary border border-outline-variant transition-none cursor-pointer" id="btnViewTable" onclick="switchView('table')" type="button">
+                    <span class="material-symbols-outlined text-[16px]">view_list</span>
+                    <span>List View</span>
+                  </button>
+                  <button class="view-btn flex items-center gap-space-xs px-space-md py-1 font-label-md text-label-md text-on-surface-variant hover:text-on-surface border border-transparent transition-none cursor-pointer" id="btnViewGrid" onclick="switchView('grid')" type="button">
+                    <span class="material-symbols-outlined text-[16px]">grid_view</span>
+                    <span>Grid View</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- System Action Buttons -->
+              <div class="flex items-center gap-space-sm">
+                <!-- Global Autonomous Calling Master Toggle Button -->
+                <button id="topAutoToggleBtn" class="h-8 px-space-md bg-surface-container-lowest border border-primary text-primary font-label-md text-label-md flex items-center gap-space-xs transition-none cursor-pointer" onclick="toggleGlobalAutoDispatch()" type="button" title="Master toggle for all automated 15-minute voice reminder calls">
+                  <span class="material-symbols-outlined text-[16px]">schedule</span>
+                  <span id="topAutoToggleLabel">Auto-Calling: ENABLED</span>
+                </button>
+                <button class="h-8 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-on-surface font-label-md text-label-md flex items-center gap-space-xs transition-none cursor-pointer" onclick="triggerGlobalSync()" type="button">
+                  <span class="material-symbols-outlined text-[16px]">sync</span>
+                  <span id="syncBtnLabel">Sync Voice Backend</span>
+                </button>
+                <button class="h-8 px-space-md bg-primary text-on-primary border border-primary hover:bg-inverse-surface font-label-md text-label-md flex items-center gap-space-xs transition-none cursor-pointer" onclick="openRegisterModal()" type="button">
+                  <span class="material-symbols-outlined text-[16px]">add</span>
+                  <span>+ Register Patient</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary Statistics Metric Strip (Strict Monochrome) -->
+        <div class="w-full bg-surface-container-lowest border-b border-outline-variant px-space-xl py-space-sm">
+          <div class="flex flex-wrap items-center gap-space-lg font-mono-data text-mono-data">
+            <div class="flex items-center gap-space-xs">
+              <span class="w-2 h-2 bg-primary"></span>
+              <span class="text-on-surface-variant uppercase text-label-sm font-label-sm">Active Registry:</span>
+              <span class="font-bold text-primary" id="metricActiveCount">5 Patients</span>
+            </div>
+            <div class="flex items-center gap-space-xs">
+              <span class="text-on-surface-variant uppercase text-label-sm font-label-sm">Dialysis Today / Tomorrow:</span>
+              <span class="font-bold text-primary" id="metricScheduledCount">3 Scheduled</span>
+            </div>
+            <div class="flex items-center gap-space-xs">
+              <span class="text-on-surface-variant uppercase text-label-sm font-label-sm">Voice Dispatch Readiness:</span>
+              <span class="font-bold text-primary">100% (TTS-V3)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Patient Explorer Viewport -->
+        <div class="p-space-xl space-y-space-lg">
+          <!-- Table View Container (Default) -->
+          <div class="w-full bg-surface-container-lowest border border-outline-variant" id="tableViewContainer">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-surface-container-low border-b border-outline-variant">
+                    <th class="py-space-md px-space-md font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Patient Profile</th>
+                    <th class="py-space-md px-space-md font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Routing Phones</th>
+                    <th class="py-space-md px-space-md font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Upcoming Dialysis Session</th>
+                    <th class="py-space-md px-space-md font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Medication Dosage Matrix</th>
+                    <th class="py-space-md px-space-md font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-outline-variant" id="patientTableBody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Grid View Container (Hidden initially) -->
+          <div class="hidden grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-space-lg" id="gridViewContainer">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- VIEW 2: KANBAN BOARD VIEW (1:1 clone of kanban_board_view)                -->
+      <!-- ========================================================================= -->
+      <section id="view-kanban" class="app-view hidden flex flex-col w-full">
+        <div class="w-full overflow-x-auto bg-surface min-h-screen p-space-lg">
+          <!-- Top 3 Columns: Morning, Evening, Dinner -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg max-w-7xl pb-8" id="board-columns-container">
+            <!-- Column 1: Morning -->
+            <section class="kanban-column flex flex-col bg-surface-container-low border border-outline-variant" data-stage-id="morning">
+              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-on-surface-variant"></span>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">Morning</h2>
+                  <span class="text-[10px] font-mono-data text-on-surface-variant tracking-normal font-normal">(&lt; 12:00)</span>
+                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold">4</span>
+                </div>
+                <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Morning" onclick="quickAddCard('morning')">
+                  <span class="material-symbols-outlined text-[16px]">add</span>
+                </button>
+              </header>
+              <div class="cards-drop-zone p-space-sm flex flex-col gap-space-sm min-h-[500px] overflow-y-auto" data-stage="morning">
+                <!-- Cards added dynamically -->
+              </div>
+            </section>
+
+            <!-- Column 2: Evening -->
+            <section class="kanban-column flex flex-col bg-surface-container-low border border-outline-variant" data-stage-id="evening">
+              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-on-surface-variant"></span>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">Evening</h2>
+                  <span class="text-[10px] font-mono-data text-on-surface-variant tracking-normal font-normal">(12:00 – 18:00)</span>
+                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold">5</span>
+                </div>
+                <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Evening" onclick="quickAddCard('evening')">
+                  <span class="material-symbols-outlined text-[16px]">add</span>
+                </button>
+              </header>
+              <div class="cards-drop-zone p-space-sm flex flex-col gap-space-sm min-h-[500px] overflow-y-auto" data-stage="evening">
+                <!-- Cards added dynamically -->
+              </div>
+            </section>
+
+            <!-- Column 3: Dinner -->
+            <section class="kanban-column flex flex-col bg-surface-container-low border border-outline-variant" data-stage-id="dinner">
+              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-on-surface-variant"></span>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">Dinner</h2>
+                  <span class="text-[10px] font-mono-data text-on-surface-variant tracking-normal font-normal">(&gt; 18:00)</span>
+                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold">6</span>
+                </div>
+                <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Dinner" onclick="quickAddCard('dinner')">
+                  <span class="material-symbols-outlined text-[16px]">add</span>
+                </button>
+              </header>
+              <div class="cards-drop-zone p-space-sm flex flex-col gap-space-sm min-h-[500px] overflow-y-auto" data-stage="dinner">
+                <!-- Cards added dynamically -->
+              </div>
+            </section>
+          </div>
+
+          <!-- Bottom 2 Columns: Try Again, Dialysis Reminder -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg max-w-7xl pb-8" id="additional-columns-container">
+            <!-- Try Again -->
+            <section class="kanban-column flex flex-col bg-surface-container-low border border-outline-variant" data-stage-id="try-again">
+              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-on-surface-variant"></span>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">Try Again</h2>
+                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold">3</span>
+                </div>
+                <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Try Again" onclick="quickAddCard('try-again')">
+                  <span class="material-symbols-outlined text-[16px]">add</span>
+                </button>
+              </header>
+              <div class="cards-drop-zone p-space-sm flex flex-col gap-space-sm min-h-[500px] overflow-y-auto" data-stage="try-again">
+                <!-- Cards added dynamically -->
+              </div>
+            </section>
+
+            <!-- Dialysis Reminder -->
+            <section class="kanban-column flex flex-col bg-surface-container-low border border-outline-variant" data-stage-id="dialysis-reminder">
+              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-on-surface-variant"></span>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">Dialysis Reminder</h2>
+                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold">3</span>
+                </div>
+                <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Dialysis Reminder" onclick="quickAddCard('dialysis-reminder')">
+                  <span class="material-symbols-outlined text-[16px]">add</span>
+                </button>
+              </header>
+              <div class="cards-drop-zone p-space-sm flex flex-col gap-space-sm min-h-[500px] overflow-y-auto" data-stage="dialysis-reminder">
+                <!-- Cards added dynamically -->
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- VIEW 3: VOICE DISPATCH / ACTIVE QUEUE VIEW                                -->
+      <!-- ========================================================================= -->
+      <section id="view-dispatch" class="app-view hidden flex flex-col w-full p-space-xl space-y-space-lg">
+        <div class="bg-surface-container-lowest border border-outline-variant p-space-lg space-y-space-md">
+          <div class="flex items-center justify-between border-b border-outline-variant pb-space-sm">
+            <div>
+              <span class="font-mono-data text-mono-data text-on-surface-variant uppercase">Sarvam SIP Trunk</span>
+              <h2 class="font-headline-lg text-headline-lg text-primary font-bold">Voice Dispatch Registry</h2>
+            </div>
+            <div class="flex items-center gap-space-sm">
+              <button class="h-8 px-space-md bg-primary text-on-primary border border-primary font-label-md text-label-md flex items-center gap-space-xs cursor-pointer" onclick="queueAllActive()">
+                <span class="material-symbols-outlined text-[16px]">phone_forwarded</span>
+                <span>Dispatch Scheduled Batch</span>
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md font-mono-data text-mono-data">
+            <div class="border border-outline-variant p-space-md bg-surface-container-low">
+              <div class="text-on-surface-variant text-[11px] uppercase">Active Outbound Campaign</div>
+              <div class="text-primary font-bold mt-1 text-[14px]" id="dispatchCampaignId">—</div>
+              <div class="text-on-surface-variant mt-1 text-[11px]">Telephony Route: +91 Automated SIP Trunk</div>
+            </div>
+            <div class="border border-outline-variant p-space-md bg-surface-container-low">
+              <div class="text-on-surface-variant text-[11px] uppercase">Agent Audio Engine</div>
+              <div class="text-primary font-bold mt-1 text-[14px]">Sarvam Bulbul TTS-v3</div>
+              <div class="text-on-surface-variant mt-1 text-[11px]">Languages: English, Hindi, Hinglish</div>
+            </div>
+            <div class="border border-outline-variant p-space-md bg-surface-container-low">
+              <div class="text-on-surface-variant text-[11px] uppercase">Dialing Allowlist</div>
+              <div class="text-primary font-bold mt-1 text-[14px]" id="dispatchAllowlist">All Registered Patients</div>
+              <div class="text-on-surface-variant mt-1 text-[11px]">Strict Carrier Compliance Active</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-lowest border border-outline-variant p-space-lg">
+          <h3 class="font-headline-md text-headline-md text-primary font-bold mb-space-md">Recent Outbound Batches &amp; Cohorts</h3>
+          <div class="divide-y divide-outline-variant" id="dispatchCohortsList">
+            <div class="py-4 text-center font-mono-data text-on-surface-variant">Loading cohorts...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- VIEW 4: CALL LOGS, DURATION, PICKUP & SARVAM COST LEDGER                   -->
+      <!-- ========================================================================= -->
+      <section id="view-transcripts" class="app-view hidden flex flex-col w-full p-space-xl space-y-space-lg">
+        <!-- Top Header & Action Controls -->
+        <div class="bg-surface-container-lowest border border-outline-variant p-space-lg">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-outline-variant pb-space-sm mb-space-md gap-space-sm">
+            <div>
+              <span class="font-mono-data text-mono-data text-on-surface-variant uppercase text-label-sm">Telephony Telemetry &amp; Financial Ledger</span>
+              <h2 class="font-headline-lg text-headline-lg text-primary font-bold">Call Records, Duration &amp; Sarvam AI Cost</h2>
+            </div>
+            <div class="flex items-center gap-space-sm">
+              <span class="font-mono-data text-code-param px-2 py-1 bg-surface-container-low border border-outline-variant text-primary" id="billingRateLabel">
+                Billing Rate: ₹1.80 / min
+              </span>
+              <button class="h-8 px-space-md border border-outline-variant hover:border-primary font-label-md text-label-md flex items-center gap-space-xs cursor-pointer" onclick="refreshTranscripts()" type="button">
+                <span class="material-symbols-outlined text-[16px]">refresh</span>
+                <span>Refresh Logs</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- KPI Metric Strip (Summary across all calls) -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-space-md border border-outline-variant p-space-md bg-surface-container-low mb-space-lg">
+            <div>
+              <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total Outbound Calls</div>
+              <div class="font-headline-lg text-headline-lg text-primary font-bold mt-0.5" id="metricTotalCalls">0</div>
+              <div class="font-mono-data text-[11px] text-on-surface-variant mt-0.5">Campaign Dispatches</div>
+            </div>
+            <div>
+              <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Pickup / Answer Rate</div>
+              <div class="font-headline-lg text-headline-lg text-primary font-bold mt-0.5" id="metricPickupRate">0%</div>
+              <div class="font-mono-data text-[11px] text-on-surface-variant mt-0.5" id="metricPickupCounts">0 Picked Up / 0 Missed</div>
+            </div>
+            <div>
+              <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total Connected Time</div>
+              <div class="font-headline-lg text-headline-lg text-primary font-bold mt-0.5" id="metricTotalDuration">0m 00s</div>
+              <div class="font-mono-data text-[11px] text-on-surface-variant mt-0.5">Billable Telephony Pulses</div>
+            </div>
+            <div>
+              <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total Sarvam AI Cost</div>
+              <div class="font-headline-lg text-headline-lg text-primary font-bold mt-0.5" id="metricTotalCost">₹0.00</div>
+              <div class="font-mono-data text-[11px] text-on-surface-variant mt-0.5">Zero cost on unanswered calls</div>
+            </div>
+          </div>
+
+          <!-- Detailed Call Attempts Ledger Table -->
+          <div class="border border-outline-variant bg-surface-container-lowest overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-surface-container-low border-b border-outline-variant font-label-sm text-label-sm uppercase text-on-surface-variant">
+                    <th class="py-space-sm px-space-md font-semibold">Date / Timestamp</th>
+                    <th class="py-space-sm px-space-md font-semibold">Recipient Patient</th>
+                    <th class="py-space-sm px-space-md font-semibold">Pickup Status (Picked Up / Not)</th>
+                    <th class="py-space-sm px-space-md font-semibold">Call Duration</th>
+                    <th class="py-space-sm px-space-md font-semibold">Sarvam AI Cost</th>
+                    <th class="py-space-sm px-space-md font-semibold">Ended By</th>
+                    <th class="py-space-sm px-space-md font-semibold font-mono-data text-right">Attempt ID</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-outline-variant font-body-sm" id="attemptsTableBody">
+                  <tr>
+                    <td class="py-4 text-center font-mono-data text-on-surface-variant" colspan="7">Loading call records...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="mt-space-md flex items-center justify-between font-mono-data text-[11px] text-on-surface-variant">
+            <span>Formula: Cost = (Duration In Seconds ÷ 60) × ₹1.80. Unanswered, Busy, or Failed calls = ₹0.00.</span>
+            <span>Provider: Sarvam AI Voice Agent + PSTN Trunking</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- VIEW 5: AGENT PROTOCOLS VIEW                                              -->
+      <!-- ========================================================================= -->
+      <section id="view-protocols" class="app-view hidden flex flex-col w-full p-space-xl space-y-space-lg">
+        <div class="bg-surface-container-lowest border border-outline-variant p-space-lg space-y-space-md">
+          <div class="border-b border-outline-variant pb-space-sm">
+            <span class="font-mono-data text-mono-data text-on-surface-variant uppercase">Sarvam Configuration</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary font-bold">Agent Protocols &amp; Runtime Variables</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+            <div class="border border-outline-variant p-space-md space-y-2 bg-surface-container-lowest">
+              <div class="flex items-center justify-between border-b border-outline-variant pb-1">
+                <span class="font-label-md uppercase font-semibold text-primary">Input Variables</span>
+                <span class="font-mono-data text-[11px] text-on-surface-variant">Injected per call</span>
+              </div>
+              <div class="font-mono-data text-[12px] space-y-1.5" id="protoInputVars">
+                Loading...
+              </div>
+            </div>
+            <div class="border border-outline-variant p-space-md space-y-2 bg-surface-container-lowest">
+              <div class="flex items-center justify-between border-b border-outline-variant pb-1">
+                <span class="font-label-md uppercase font-semibold text-primary">Output Variables</span>
+                <span class="font-mono-data text-[11px] text-on-surface-variant">Extracted by Sarvam AI</span>
+              </div>
+              <div class="font-mono-data text-[12px] space-y-1.5" id="protoOutputVars">
+                Loading...
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PATIENT DETAIL POPUP MODAL (Clean, Monochromatic Swiss Precision)         -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-0 z-50 hidden flex items-center justify-center p-space-md sm:p-space-xl" id="patientModal">
+    <!-- Non-blurred 40% opaque backdrop curtain -->
+    <div class="fixed inset-0 bg-primary/40 transition-none" id="modalBackdrop" onclick="closePatientModal()"></div>
+    <!-- Modal Box (Level 3 depth: pure white with crisp border) -->
+    <div class="relative w-full max-w-4xl bg-surface-container-lowest border-2 border-primary z-10 max-h-[92vh] flex flex-col shadow-none">
+      <!-- Modal Header -->
+      <div class="p-space-lg border-b border-outline-variant bg-surface-container-low flex items-start justify-between">
+        <div class="space-y-space-xs">
+          <div class="flex items-center gap-space-sm flex-wrap">
+            <span class="font-mono-data text-mono-data text-primary uppercase font-bold" id="mMrn">#NV-2026-8941</span>
+            <span class="inline-block w-1.5 h-1.5 bg-primary"></span>
+            <button id="mAutoCallBadge" onclick="toggleCurrentPatientAutoCall()" class="inline-flex items-center gap-1 px-1.5 py-0.5 border border-primary bg-surface-container-lowest font-mono-data text-mono-data text-primary hover:bg-surface-container-high transition-none cursor-pointer" title="Click to toggle 15-minute autonomous calling for this patient">
+              <span class="w-1.5 h-1.5 bg-primary" id="mAutoCallDot"></span>
+              <span id="mAutoCallText">Auto-Call: Enabled</span>
+            </button>
+            <span class="font-mono-data text-mono-data text-on-surface-variant" id="mBay">Station 4B (Hemodialysis)</span>
+          </div>
+          <h2 class="font-headline-xl text-headline-xl text-primary font-bold tracking-tight" id="mName">Devansh Poddar</h2>
+        </div>
+        <button class="h-8 w-8 flex items-center justify-center border border-outline-variant hover:border-primary bg-surface-container-lowest text-primary transition-none cursor-pointer" onclick="closePatientModal()" title="Close dialog (Esc)" type="button">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+      <!-- Modal Body (Scrollable dense clinical telemetry) -->
+      <div class="p-space-lg overflow-y-auto space-y-space-lg text-on-surface">
+        <!-- Section 1: Contact & Clinic Routing -->
+        <div class="border border-outline-variant bg-surface-container-lowest p-space-md space-y-space-sm">
+          <div class="flex items-center justify-between border-b border-outline-variant pb-space-xs">
+            <span class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold">1. Contact &amp; Clinic Routing Telemetry</span>
+            <span class="font-mono-data text-mono-data text-on-surface-variant">Validated Carrier Route</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+            <div class="border border-outline-variant p-space-sm bg-surface-container-low">
+              <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Patient Direct Phone</div>
+              <div class="font-mono-data text-mono-data text-primary font-semibold mt-0.5" id="mPhone">+919874770088</div>
+              <div class="font-label-sm text-label-sm text-on-surface-variant mt-1">SMS &amp; Voice Automated Destination</div>
+            </div>
+            <div class="border border-outline-variant p-space-sm bg-surface-container-low">
+              <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Front Desk Clinic Line</div>
+              <div class="font-mono-data text-mono-data text-primary font-semibold mt-0.5" id="mFrontDesk">+919874770088</div>
+              <div class="font-label-sm text-label-sm text-on-surface-variant mt-1">Immediate Inbound Reception Loop</div>
+            </div>
+            <div class="border border-outline-variant p-space-sm bg-surface-container-low">
+              <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Emergency Contact (Next of Kin)</div>
+              <div class="font-mono-data text-mono-data text-primary font-semibold mt-0.5" id="mEmergency">+919830875614</div>
+              <div class="font-label-sm text-label-sm text-on-surface-variant mt-1" id="mRelation">Relation: Primary Caregiver</div>
+            </div>
+          </div>
+        </div>
+        <!-- Section 2: Upcoming Dialysis Appointment -->
+        <div class="border border-outline-variant bg-surface-container-lowest p-space-md space-y-space-sm">
+          <div class="flex items-center justify-between border-b border-outline-variant pb-space-xs">
+            <span class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold">2. Dialysis Clinical Session Booking</span>
+            <span class="font-mono-data text-mono-data text-on-surface-variant">Recurring Cycle: Mon / Thu / Sat</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+            <div class="border border-outline-variant p-space-sm">
+              <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Session Date</span>
+              <div class="font-headline-md text-headline-md text-primary mt-0.5 font-bold" id="mDialysisDate">2026-10-12</div>
+              <div class="font-mono-data text-mono-data text-on-surface-variant">Scheduled calendar lock</div>
+            </div>
+            <div class="border border-outline-variant p-space-sm">
+              <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Session Time</span>
+              <div class="font-headline-md text-headline-md text-primary mt-0.5 font-bold" id="mDialysisTime">10:00 AM</div>
+              <div class="font-mono-data text-mono-data text-on-surface-variant">Duration: 4.0 Hours</div>
+            </div>
+            <div class="border border-outline-variant p-space-sm">
+              <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Unit &amp; Bay Assignment</span>
+              <div class="font-headline-md text-headline-md text-primary mt-0.5 font-bold" id="mDialysisBay">Station 4B (Hemodialysis)</div>
+              <div class="font-mono-data text-mono-data text-on-surface-variant">Dialyzer: High-flux F80</div>
+            </div>
+          </div>
+        </div>
+        <!-- Section 3: Daily Voice Medication Schedules -->
+        <div class="border border-outline-variant bg-surface-container-lowest p-space-md space-y-space-sm">
+          <div class="flex items-center justify-between border-b border-outline-variant pb-space-xs">
+            <span class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold">3. Daily Voice Medication Schedules (Voice Agent Dispatch Engine)</span>
+            <span class="font-mono-data text-mono-data text-on-surface-variant">Automated Outbound Voice Queue</span>
+          </div>
+          <div class="space-y-space-sm">
+            <!-- Morning -->
+            <div class="border border-outline-variant p-space-sm bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+              <div class="flex items-center gap-space-md">
+                <div class="w-24 font-mono-data text-mono-data bg-primary text-on-primary px-2 py-1 text-center font-bold" id="mTimeMorning">
+                  09:00 AM
+                </div>
+                <div>
+                  <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Morning Nephro Regimen (morning_medicines)</div>
+                  <div class="font-body-md text-body-md text-primary font-medium" id="mMedMorning">Amlodipine 1 tablet, Telmisartan 1 tablet</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-space-xs text-on-surface-variant font-mono-data text-mono-data">
+                <span class="w-1.5 h-1.5 bg-primary"></span>
+                <span>Dispatch: TTS Voice Call</span>
+              </div>
+            </div>
+            <!-- Evening -->
+            <div class="border border-outline-variant p-space-sm bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+              <div class="flex items-center gap-space-md">
+                <div class="w-24 font-mono-data text-mono-data bg-primary text-on-primary px-2 py-1 text-center font-bold" id="mTimeEvening">
+                  02:30 PM
+                </div>
+                <div>
+                  <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Evening Regimen (evening_medicines)</div>
+                  <div class="font-body-md text-body-md text-primary font-medium" id="mMedEvening">Furosemide 1 tablet</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-space-xs text-on-surface-variant font-mono-data text-mono-data">
+                <span class="w-1.5 h-1.5 bg-primary"></span>
+                <span>Dispatch: TTS Voice Call</span>
+              </div>
+            </div>
+            <!-- Dinner -->
+            <div class="border border-outline-variant p-space-sm bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+              <div class="flex items-center gap-space-md">
+                <div class="w-24 font-mono-data text-mono-data bg-primary text-on-primary px-2 py-1 text-center font-bold" id="mTimeDinner">
+                  10:30 PM
+                </div>
+                <div>
+                  <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Dinner Regimen (dinner_medicines)</div>
+                  <div class="font-body-md text-body-md text-primary font-medium" id="mMedDinner">Atorvastatin 2 tablets</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-space-xs text-on-surface-variant font-mono-data text-mono-data">
+                <span class="w-1.5 h-1.5 bg-primary"></span>
+                <span>Dispatch: TTS Voice Call</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Section 4: Voice Agent Simulation / Script Preview -->
+        <div class="border border-outline-variant bg-surface-container-low p-space-md space-y-space-sm">
+          <div class="flex items-center justify-between">
+            <span class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold">4. Voice Agent Script Synthesis Simulation</span>
+            <span class="font-mono-data text-mono-data text-primary font-semibold">Model: NEPHRO-TTS-VOICE-V3</span>
+          </div>
+          <div class="border-l-2 border-primary bg-surface-container-lowest p-space-md font-body-sm text-body-sm text-on-surface relative">
+            <div class="flex items-center gap-space-xs mb-space-xs text-on-surface-variant font-mono-data text-mono-data uppercase">
+              <span class="material-symbols-outlined text-[16px]">graphic_eq</span>
+              <span>Synthesized Agent Audio Transcript Preview:</span>
+            </div>
+            <p class="italic leading-relaxed font-body-md" id="mVoicePreview">
+              "Hello Devansh, this is your NephroVoice dialysis clinic reminder. It is 9:00 AM, please take your morning medicine: Amlodipine 1 tablet and Telmisartan 1 tablet."
+            </p>
+          </div>
+          <!-- Simulation Audio bar feedback -->
+          <div class="hidden border border-outline-variant bg-surface-container-lowest p-space-sm" id="audioSimulationStrip">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-mono-data text-mono-data text-primary uppercase font-medium">Outbound Dialing: Carrier Handshake...</span>
+              <span class="font-mono-data text-mono-data text-primary" id="callStatusText">Ringing +919874770088</span>
+            </div>
+            <div class="w-full bg-surface-variant h-1.5">
+              <div class="bg-primary h-1.5 w-1/3 transition-all duration-300" id="audioProgressBar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Footer Action Bar -->
+      <div class="p-space-lg border-t border-outline-variant bg-surface-container-lowest flex flex-wrap items-center justify-between gap-space-md">
+        <div class="flex items-center gap-space-sm">
+          <button class="h-8 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-md text-label-md flex items-center gap-space-xs transition-none cursor-pointer" onclick="triggerTestCall()" type="button">
+            <span class="material-symbols-outlined text-[16px]">call</span>
+            <span id="testCallBtnLabel">Trigger Test Call</span>
+          </button>
+          <button class="h-8 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-md text-label-md flex items-center gap-space-xs transition-none cursor-pointer" onclick="openEditModalForCurrent()" type="button">
+            <span class="material-symbols-outlined text-[16px]">edit</span>
+            <span>Edit Patient Info</span>
+          </button>
+          <button class="h-8 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-red-600 hover:text-red-600 text-on-surface-variant font-label-md text-label-md flex items-center gap-space-xs transition-none cursor-pointer" onclick="deleteCurrentActivePatient()" type="button">
+            <span class="material-symbols-outlined text-[16px]">delete</span>
+            <span>Delete Patient</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-space-sm">
+          <button class="h-8 px-space-md bg-primary text-on-primary border border-primary hover:bg-inverse-surface font-label-md text-label-md flex items-center gap-space-xs transition-none cursor-pointer" onclick="closePatientModal()" type="button">
+            Close Dialog
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- EDIT PATIENT MODAL (Complete CRUD - Full 12 Clinical Variables)           -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-0 z-50 hidden flex items-center justify-center p-space-md sm:p-space-lg" id="editPatientModal">
+    <div class="fixed inset-0 bg-primary/40 transition-none" onclick="closeEditPatientModal()"></div>
+    <div class="relative w-full max-w-2xl bg-surface-container-lowest border-2 border-primary z-10 max-h-[92vh] flex flex-col shadow-none">
+      <div class="p-space-md sm:p-space-lg border-b border-outline-variant bg-surface-container-low flex items-center justify-between">
+        <div>
+          <span class="font-mono-data text-mono-data text-on-surface-variant uppercase text-label-sm" id="editModalSub">Clinical Records · Patient Modification</span>
+          <h3 class="font-headline-lg text-headline-lg text-primary font-bold" id="editModalTitle">Edit Patient Record</h3>
+        </div>
+        <button class="h-8 w-8 flex items-center justify-center border border-outline-variant hover:border-primary text-primary cursor-pointer" onclick="closeEditPatientModal()" type="button">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <form class="p-space-md sm:p-space-lg overflow-y-auto space-y-space-md text-on-surface" id="editPatientForm" onsubmit="handleEditPatientSubmit(event)">
+        <input type="hidden" id="editPatientId">
+
+        <!-- Section 1: Core Patient & Telephony -->
+        <div class="border border-outline-variant p-space-md space-y-space-sm bg-surface-container-lowest">
+          <div class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold border-b border-outline-variant pb-1 flex items-center justify-between">
+            <span>1. Patient Identity &amp; Routing Telephony</span>
+            <span class="font-mono-data text-mono-data text-on-surface-variant text-[11px]" id="editPatientMrn">#NV-2026</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editName">
+                Patient Name <span class="text-primary font-mono-data text-[10px]">(patient_name)</span> *
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="editName" required type="text">
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editPhone">
+                Patient Phone <span class="text-primary font-mono-data text-[10px]">(patient_phone)</span> *
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary" id="editPhone" required type="tel">
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-1">
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editFrontDesk">
+                Front Desk Line <span class="text-primary font-mono-data text-[10px]">(front_desk_number)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary" id="editFrontDesk" type="tel">
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editEmergency">
+                Emergency Contact <span class="text-primary font-mono-data text-[10px]">(emergency_contact)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary" id="editEmergency" type="tel">
+            </div>
+          </div>
+          <div class="pt-2 border-t border-outline-variant flex items-center justify-between">
+            <div>
+              <span class="block font-label-sm text-label-sm uppercase text-on-surface font-semibold">15-Min Autonomous Voice Calling</span>
+              <span class="text-[11px] text-on-surface-variant font-mono-data">Automatically call during scheduled reminder windows</span>
+            </div>
+            <select id="editAutoCall" class="h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary">
+              <option value="1">Enabled (Active 15-min dispatches)</option>
+              <option value="0">Paused (Manual receptionist call only)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Section 2: Dialysis Appointment Booking & Bay -->
+        <div class="border border-outline-variant p-space-md space-y-space-sm bg-surface-container-lowest">
+          <div class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold border-b border-outline-variant pb-1">
+            2. Dialysis Clinical Session &amp; Bay
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editDialysisDate">
+                Appointment Date
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary cursor-pointer" id="editDialysisDate" type="date">
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editDialysisTime">
+                Appointment Time
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary cursor-pointer" id="editDialysisTime" type="time">
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editDialysisBay">
+                Assigned Unit / Bay
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary" id="editDialysisBay" placeholder="Station 4B (Hemodialysis)" type="text">
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Daily Medication Sets & Reminder Times -->
+        <div class="border border-outline-variant p-space-md space-y-space-sm bg-surface-container-lowest">
+          <div class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold border-b border-outline-variant pb-1">
+            3. Medication Sets &amp; Reminder Dispatch Times
+          </div>
+
+          <!-- Morning Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm items-start border-b border-outline-variant pb-2">
+            <div class="sm:col-span-2">
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editMorningMed">
+                Morning Medicines <span class="text-primary font-mono-data text-[10px]">(morning_medicines)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="editMorningMed" type="text">
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editMorningTime">
+                Morning Time <span class="text-primary font-mono-data text-[10px]">(&lt; 12:00)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary cursor-pointer" id="editMorningTime" type="time">
+            </div>
+          </div>
+
+          <!-- Evening Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm items-start border-b border-outline-variant pb-2">
+            <div class="sm:col-span-2">
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editEveningMed">
+                Evening Medicines <span class="text-primary font-mono-data text-[10px]">(evening_medicines)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="editEveningMed" type="text">
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editEveningTime">
+                Evening Time <span class="text-primary font-mono-data text-[10px]">(12:00 – 18:00)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary cursor-pointer" id="editEveningTime" type="time">
+            </div>
+          </div>
+
+          <!-- Dinner Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm items-start">
+            <div class="sm:col-span-2">
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editDinnerMed">
+                Dinner Medicines <span class="text-primary font-mono-data text-[10px]">(dinner_medicines)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="editDinnerMed" type="text">
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="editDinnerTime">
+                Dinner Time <span class="text-primary font-mono-data text-[10px]">(&gt; 18:00)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary cursor-pointer" id="editDinnerTime" type="time">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-space-sm pt-space-sm border-t border-outline-variant">
+          <button class="h-8 px-space-md border border-outline-variant hover:border-red-600 hover:text-red-600 font-label-md text-label-md flex items-center gap-1 cursor-pointer" onclick="deleteCurrentActivePatient()" type="button">
+            <span class="material-symbols-outlined text-[16px]">delete</span>
+            <span>Delete Patient</span>
+          </button>
+          <div class="flex items-center gap-space-sm">
+            <button class="h-8 px-space-md border border-outline-variant font-label-md text-label-md hover:border-primary cursor-pointer" onclick="closeEditPatientModal()" type="button">Cancel</button>
+            <button class="h-8 px-space-md bg-primary text-on-primary border border-primary font-label-md text-label-md hover:bg-inverse-surface flex items-center gap-1 cursor-pointer" type="submit">
+              <span class="material-symbols-outlined text-[16px]">save</span>
+              <span>Save Patient Changes</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- DELETE CONFIRMATION MODAL                                                 -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-0 z-50 hidden flex items-center justify-center p-space-md" id="deleteConfirmModal">
+    <div class="fixed inset-0 bg-primary/40 transition-none" onclick="closeDeleteConfirmModal()"></div>
+    <div class="relative w-full max-w-md bg-surface-container-lowest border-2 border-primary z-10 p-space-lg flex flex-col gap-space-md shadow-none">
+      <div class="flex items-start justify-between border-b border-outline-variant pb-space-sm">
+        <div>
+          <span class="font-mono-data text-mono-data text-red-600 uppercase text-label-sm font-semibold">Danger · Irreversible Action</span>
+          <h3 class="font-headline-md text-headline-md text-primary font-bold">Delete Patient Record</h3>
+        </div>
+        <button class="h-8 w-8 flex items-center justify-center border border-outline-variant hover:border-primary text-primary cursor-pointer" onclick="closeDeleteConfirmModal()" type="button">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <p class="font-body-md text-body-md text-on-surface" id="deleteConfirmText">
+        Are you sure you want to delete this patient record? This will permanently cancel all scheduled automated medication calls, dialysis sessions, and clinical history.
+      </p>
+
+      <div class="flex items-center justify-end gap-space-sm pt-space-xs border-t border-outline-variant">
+        <button class="h-8 px-space-md border border-outline-variant font-label-md text-label-md hover:border-primary cursor-pointer" onclick="closeDeleteConfirmModal()" type="button">
+          Keep Patient
+        </button>
+        <button class="h-8 px-space-md bg-red-600 text-white border border-red-600 font-label-md text-label-md hover:bg-red-700 flex items-center gap-1 cursor-pointer" id="btnConfirmDelete" type="button">
+          <span class="material-symbols-outlined text-[16px]">delete_forever</span>
+          <span>Confirm Permanent Delete</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- PATIENT REGISTRATION MODAL (Full 12 Clinical Voice Agent Variables)        -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-0 z-50 hidden flex items-center justify-center p-space-md sm:p-space-lg" id="registerModal">
+    <div class="fixed inset-0 bg-primary/40 transition-none" onclick="closeRegisterModal()"></div>
+    <div class="relative w-full max-w-2xl bg-surface-container-lowest border-2 border-primary z-10 max-h-[92vh] flex flex-col shadow-none">
+      <div class="p-space-md sm:p-space-lg border-b border-outline-variant bg-surface-container-low flex items-center justify-between">
+        <div>
+          <span class="font-mono-data text-mono-data text-on-surface-variant uppercase text-label-sm">Clinical Intake · Voice Agent Registration</span>
+          <h3 class="font-headline-lg text-headline-lg text-primary font-bold">Register Patient Voice Protocol</h3>
+        </div>
+        <button class="h-8 w-8 flex items-center justify-center border border-outline-variant hover:border-primary text-primary cursor-pointer" onclick="closeRegisterModal()" type="button">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <form class="p-space-md sm:p-space-lg overflow-y-auto space-y-space-md text-on-surface" id="newPatientForm" onsubmit="handleNewPatientSubmit(event)">
+        <!-- Section 1: Core Patient & Telephony -->
+        <div class="border border-outline-variant p-space-md space-y-space-sm bg-surface-container-lowest">
+          <div class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold border-b border-outline-variant pb-1">
+            1. Patient Identity &amp; Routing Telephony
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regName">
+                Patient Name <span class="text-primary font-mono-data text-[10px]">(patient_name)</span> *
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="regName" placeholder="e.g. Arjun Mukherjee" required type="text">
+              <span class="text-[11px] text-on-surface-variant mt-0.5 block font-mono-data">First / full name as spoken by voice agent</span>
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regPhone">
+                Patient Phone <span class="text-primary font-mono-data text-[10px]">(patient_phone)</span> *
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary" id="regPhone" placeholder="+919876543210" required type="tel">
+              <span class="text-[11px] text-on-surface-variant mt-0.5 block font-mono-data">Primary number called by SIP outbound trunk</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-1">
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regFrontDesk">
+                Front Desk Line <span class="text-primary font-mono-data text-[10px]">(front_desk_number)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary" id="regFrontDesk" value="+919874770088" type="tel">
+              <span class="text-[11px] text-on-surface-variant mt-0.5 block font-mono-data">Clinic escalation number for patient transfers</span>
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regEmergency">
+                Emergency Contact <span class="text-primary font-mono-data text-[10px]">(emergency_contact)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary" id="regEmergency" placeholder="+919830875614" type="tel">
+              <span class="text-[11px] text-on-surface-variant mt-0.5 block font-mono-data">Next-of-kin contact on file (may be empty)</span>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-outline-variant flex items-center justify-between">
+            <div>
+              <span class="block font-label-sm text-label-sm uppercase text-on-surface font-semibold">15-Min Autonomous Voice Calling</span>
+              <span class="text-[11px] text-on-surface-variant font-mono-data">Automatically call during scheduled reminder windows</span>
+            </div>
+            <select id="regAutoCall" class="h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary">
+              <option value="1">Enabled (Active 15-min dispatches)</option>
+              <option value="0">Paused (Manual receptionist call only)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Section 2: Dialysis Appointment Booking -->
+        <div class="border border-outline-variant p-space-md space-y-space-sm bg-surface-container-lowest">
+          <div class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold border-b border-outline-variant pb-1">
+            2. Dialysis Clinical Session Booking
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regDialysisDate">
+                Appointment Date <span class="text-primary font-mono-data text-[10px]">(dialysis_appointment_date)</span> *
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary cursor-pointer" id="regDialysisDate" required type="date" value="2026-10-14">
+              <span class="text-[11px] text-on-surface-variant mt-0.5 block font-mono-data">YYYY-MM-DD format calendar lock</span>
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regDialysisTime">
+                Appointment Time <span class="text-primary font-mono-data text-[10px]">(dialysis_appointment_time)</span> *
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary cursor-pointer" id="regDialysisTime" required type="time" value="10:00">
+              <span class="text-[11px] text-on-surface-variant mt-0.5 block font-mono-data">Dialysis session scheduled arrival time</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Daily Medication Sets & Reminder Times -->
+        <div class="border border-outline-variant p-space-md space-y-space-sm bg-surface-container-lowest">
+          <div class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold border-b border-outline-variant pb-1">
+            3. Medication Sets &amp; Preferred Reminder Times
+          </div>
+
+          <!-- Morning Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm items-start border-b border-outline-variant pb-2">
+            <div class="sm:col-span-2">
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regMorningMed">
+                Morning Medicines <span class="text-primary font-mono-data text-[10px]">(morning_medicines)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="regMorningMed" placeholder="e.g. Amlodipine 1 tab, Telmisartan 1 tab" value="Amlodipine 1 tab, Telmisartan 1 tab" type="text">
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regMorningTime">
+                Morning Time <span class="text-primary font-mono-data text-[10px]">(&lt; 12:00)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary cursor-pointer" id="regMorningTime" value="09:00" type="time">
+            </div>
+          </div>
+
+          <!-- Evening Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm items-start border-b border-outline-variant pb-2">
+            <div class="sm:col-span-2">
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regEveningMed">
+                Evening Medicines <span class="text-primary font-mono-data text-[10px]">(evening_medicines)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="regEveningMed" placeholder="e.g. Furosemide 1 tablet" value="Furosemide 1 tablet" type="text">
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regEveningTime">
+                Evening Time <span class="text-primary font-mono-data text-[10px]">(12:00 – 18:00)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary cursor-pointer" id="regEveningTime" value="14:30" type="time">
+            </div>
+          </div>
+
+          <!-- Dinner Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm items-start">
+            <div class="sm:col-span-2">
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regDinnerMed">
+                Dinner Medicines <span class="text-primary font-mono-data text-[10px]">(dinner_medicines)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="regDinnerMed" placeholder="e.g. Atorvastatin 2 tablets" value="Atorvastatin 2 tablets" type="text">
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1" for="regDinnerTime">
+                Dinner Time <span class="text-primary font-mono-data text-[10px]">(&gt; 18:00)</span>
+              </label>
+              <input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary cursor-pointer" id="regDinnerTime" value="22:30" type="time">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-space-sm pt-space-sm border-t border-outline-variant">
+          <button class="h-8 px-space-md border border-outline-variant font-label-md text-label-md hover:border-primary cursor-pointer" onclick="closeRegisterModal()" type="button">Cancel</button>
+          <button class="h-8 px-space-md bg-primary text-on-primary border border-primary font-label-md text-label-md hover:bg-inverse-surface cursor-pointer" type="submit">Complete Registration</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification Banner Toast -->
+  <div class="fixed bottom-space-lg right-space-lg z-50 hidden bg-primary text-on-primary border border-primary px-space-lg py-space-sm font-mono-data text-mono-data flex items-center gap-space-sm shadow-md" id="toastNotification">
+    <span class="material-symbols-outlined text-[18px]">info</span>
+    <span id="toastMessage">Voice Gateway: System operational</span>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

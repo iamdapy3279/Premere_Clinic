@@ -1,0 +1,964 @@
+<!DOCTYPE html><html lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"error":"#ba1a1a","tertiary-container":"#1a1b22","on-tertiary-container":"#83838c","secondary-container":"#e4e1e6","on-primary":"#ffffff","on-surface":"#1a1c1c","on-tertiary-fixed-variant":"#46464e","inverse-surface":"#2f3131","on-primary-fixed-variant":"#474649","on-secondary-fixed-variant":"#47464a","inverse-on-surface":"#f0f1f1","tertiary":"#000000","on-tertiary-fixed":"#1a1b22","surface-container-low":"#f3f3f3","surface-variant":"#e2e2e2","error-container":"#ffdad6","surface-tint":"#5f5e60","surface-container":"#eeeeee","inverse-primary":"#c8c6c8","on-secondary":"#ffffff","secondary-fixed":"#e4e1e6","primary":"#000000","surface-container-lowest":"#ffffff","on-primary-container":"#858386","on-surface-variant":"#47464a","outline-variant":"#c8c5ca","on-secondary-container":"#656467","on-error-container":"#93000a","tertiary-fixed":"#e3e1ec","tertiary-fixed-dim":"#c6c5cf","surface-dim":"#dadada","surface-bright":"#f9f9f9","primary-fixed-dim":"#c8c6c8","surface":"#f9f9f9","surface-container-high":"#e8e8e8","surface-container-highest":"#e2e2e2","secondary":"#5f5e61","on-tertiary":"#ffffff","background":"#f9f9f9","secondary-fixed-dim":"#c8c5ca","on-secondary-fixed":"#1b1b1e","on-error":"#ffffff","primary-fixed":"#e5e1e4","on-background":"#1a1c1c","on-primary-fixed":"#1c1b1d","outline":"#78767b","primary-container":"#1c1b1d"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-lg":"16px","gutter":"12px","gutter-desktop":"16px","space-xl":"24px","space-2xl":"32px","space-xs":"4px","space-sm":"8px","margin-desktop":"24px","margin":"16px","space-md":"12px"},"fontFamily":{"mono-data":["JetBrains Mono"],"headline-xl":["Inter"],"body-sm":["Inter"],"label-sm":["Inter"],"label-md":["Inter"],"code-param":["JetBrains Mono"],"headline-md":["Inter"],"headline-sm":["Inter"],"body-lg":["Inter"],"body-md":["Inter"],"headline-lg":["Inter"]},"fontSize":{"mono-data":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"headline-xl":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"500"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"code-param":["11px",{"lineHeight":"14px","letterSpacing":"0em","fontWeight":"500"}],"headline-md":["15px",{"lineHeight":"20px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-sm":["13px",{"lineHeight":"18px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-lg":["14px",{"lineHeight":"20px","letterSpacing":"-0.005em","fontWeight":"400"}],"body-md":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["18px",{"lineHeight":"24px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest z-50 flex flex-col border-r border-outline-variant"><nav class="flex-1 px-space-sm py-space-md space-y-1 overflow-y-auto" data-active-classes="bg-primary text-on-primary font-headline-sm"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-none border border-transparent bg-primary text-on-primary font-headline-sm" data-path="patient-intake-queue" href="#"><span class="material-symbols-outlined text-[18px]">patient_list</span><span class="">Intake &amp; Queue</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm text-on-surface-variant font-label-md text-label-md transition-none hover:bg-surface-container-high hover:text-on-surface border border-transparent" data-path="voice-dispatch-registry" href="#"><span class="material-symbols-outlined text-[18px]">record_voice_over</span><span class="">Voice Dispatch</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm text-on-surface-variant font-label-md text-label-md transition-none hover:bg-surface-container-high hover:text-on-surface border border-transparent" data-path="dialysis-schedule-matrix" href="#"><span class="material-symbols-outlined text-[18px]">event_repeat</span><span class="">Schedule Matrix</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm text-on-surface-variant font-label-md text-label-md transition-none hover:bg-surface-container-high hover:text-on-surface border border-transparent" data-path="call-transcripts-and-logs" href="#"><span class="material-symbols-outlined text-[18px]">receipt_long</span><span class="">Call Transcripts</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm text-on-surface-variant font-label-md text-label-md transition-none hover:bg-surface-container-high hover:text-on-surface border border-transparent" data-path="agent-rule-configuration" href="#"><span class="material-symbols-outlined text-[18px]">settings_voice</span><span class="">Agent Protocols</span></a></nav></aside><div class="pl-64 min-h-screen flex flex-col"><main class="relative flex-1 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Command & Filter Bar -->
+<div class="w-full bg-surface-container-lowest border-b border-outline-variant px-space-xl py-space-lg">
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-lg">
+
+<div class="flex flex-wrap items-center gap-space-md">
+<!-- Search filter -->
+<div class="relative min-w-[280px] sm:min-w-[320px]">
+<span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-8 pl-9 pr-space-sm bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary transition-none" id="registrySearch" placeholder="Filter by name, phone (+91), or session..." type="text">
+</div>
+<!-- View switcher -->
+<div class="inline-flex border border-outline-variant bg-surface-container-low p-0.5" role="group">
+<button class="view-btn flex items-center gap-space-xs px-space-md py-1 font-label-md text-label-md bg-surface-container-lowest text-primary border border-outline-variant transition-none" id="btnViewTable" onclick="switchView('table')" type="button">
+<span class="material-symbols-outlined text-[16px]">view_list</span>
+<span class="">List View</span>
+</button>
+<button class="view-btn flex items-center gap-space-xs px-space-md py-1 font-label-md text-label-md text-on-surface-variant hover:text-on-surface border border-transparent transition-none" id="btnViewGrid" onclick="switchView('grid')" type="button">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+<span class="">Grid View</span>
+</button>
+</div>
+<!-- System Action Buttons -->
+<div class="flex items-center gap-space-sm">
+<button class="h-8 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-on-surface font-label-md text-label-md flex items-center gap-space-xs transition-none" onclick="triggerGlobalSync()" type="button">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span id="syncBtnLabel" class="">Sync Voice Backend</span>
+</button>
+<button class="h-8 px-space-md bg-primary text-on-primary border border-primary hover:bg-inverse-surface font-label-md text-label-md flex items-center gap-space-xs transition-none" onclick="openRegisterModal()" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span class="">+ Register Patient</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary Statistics Metric Strip (Strict Monochrome) -->
+
+<!-- Main Patient Explorer Viewport -->
+<div class="w-full bg-surface-container-lowest border-b border-outline-variant px-space-xl py-space-sm"><div class="flex flex-wrap items-center gap-space-lg font-mono-data text-mono-data"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 bg-primary"></span><span class="text-on-surface-variant uppercase text-label-sm font-label-sm">Active Registry:</span><span class="font-bold text-primary">5 Patients</span></div><div class="flex items-center gap-space-xs"><span class="text-on-surface-variant uppercase text-label-sm font-label-sm">Dialysis Today / Tomorrow:</span><span class="font-bold text-primary">3 Scheduled</span></div><div class="flex items-center gap-space-xs"><span class="text-on-surface-variant uppercase text-label-sm font-label-sm">Voice Dispatch Readiness:</span><span class="font-bold text-primary">100% (TTS-V3)</span></div></div></div><div class="p-space-xl space-y-space-lg">
+<!-- Table View Container (Default) -->
+<div class="w-full bg-surface-container-lowest border border-outline-variant" id="tableViewContainer">
+
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant"><th class="py-space-md px-space-md font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Patient Profile</th><th class="py-space-md px-space-md font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Routing Phones</th><th class="py-space-md px-space-md font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Upcoming Dialysis Session</th><th class="py-space-md px-space-md font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Medication Dosage Matrix</th><th class="py-space-md px-space-md font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant text-right">Actions</th></tr>
+</thead>
+<tbody class="divide-y divide-outline-variant" id="patientTableBody"><tr class="hover:bg-surface-container-high cursor-pointer transition-all border-b border-outline-variant bg-surface-container-lowest" onclick="openPatientModal('NV-2026-8941')"><td class="py-space-md px-space-md"><div class="flex items-center gap-space-md"><div><div class="font-headline-sm text-headline-sm text-primary font-bold flex items-center gap-space-xs"><span class="">Devansh Poddar</span><span class="font-mono-data text-code-param px-1.5 py-0.5 border border-primary bg-primary text-on-primary text-[11px]">PRIMARY</span></div><div class="font-mono-data text-body-sm text-on-surface-variant flex items-center gap-1.5 mt-0.5"><span class="text-outline-variant">•</span><span class="">3x / week (M-W-F)</span></div></div></div></td><td class="py-space-md px-space-md"><div class="flex items-center gap-1 font-mono-data text-mono-data text-primary font-semibold"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">call</span><span class="">+919874770088</span></div><div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">emergency</span><span class="">Emergency:</span><span class="font-mono-data font-medium text-primary">+919830875614</span></div></td><td class="py-space-md px-space-md"><div class="flex items-center gap-space-xs font-mono-data text-mono-data text-primary font-semibold"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">event</span><span class="">2026-10-12</span><span class="text-on-surface-variant">•</span><span class="">10:00 AM</span></div></td><td class="py-space-md px-space-md"><div class="space-y-1.5"><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant font-mono-data text-code-param font-medium text-primary">09:00</span><span class="text-primary font-medium truncate">Amlodipine 1 tab, Telmisartan 1 tab</span></div><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-low border border-outline-variant font-mono-data text-code-param text-on-surface-variant">14:30</span><span class="text-on-surface truncate">Furosemide 1 tablet</span></div><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-low border border-outline-variant font-mono-data text-code-param text-on-surface-variant">22:30</span><span class="text-on-surface truncate">Atorvastatin 2 tablets</span></div></div></td><td class="py-space-md px-space-md text-right"><button type="button" onclick="event.stopPropagation(); openPatientModal('NV-2026-8941')" class="h-7 px-space-sm bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-sm text-label-sm inline-flex items-center gap-1 transition-none"><span class="material-symbols-outlined text-[14px]">call</span><span class="">Call</span></button></td></tr><tr class="hover:bg-surface-container-high cursor-pointer transition-all border-b border-outline-variant bg-surface-container-lowest" onclick="openPatientModal('NV-2026-4412')"><td class="py-space-md px-space-md"><div class="flex items-center gap-space-md"><div><div class="font-headline-sm text-headline-sm text-primary font-bold flex items-center gap-space-xs"><span class="">Meera Sharma</span></div><div class="font-mono-data text-body-sm text-on-surface-variant flex items-center gap-1.5 mt-0.5"><span class="text-outline-variant">•</span><span class="">2x / week (T-Th)</span></div></div></div></td><td class="py-space-md px-space-md"><div class="flex items-center gap-1 font-mono-data text-mono-data text-primary font-semibold"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">call</span><span class="">+919810234567</span></div><div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">emergency</span><span class="">Emergency:</span><span class="font-mono-data font-medium text-primary">+919810998877</span></div></td><td class="py-space-md px-space-md"><div class="flex items-center gap-space-xs font-mono-data text-mono-data text-primary font-semibold"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">event</span><span class="">2026-10-13</span><span class="text-on-surface-variant">•</span><span class="">07:30 AM</span></div></td><td class="py-space-md px-space-md"><div class="space-y-1.5"><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant font-mono-data text-code-param font-medium text-primary">08:00</span><span class="text-primary font-medium truncate">Torsemide 1 tab, Metoprolol 1 tab</span></div><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-low border border-outline-variant font-mono-data text-code-param text-on-surface-variant">13:00</span><span class="text-on-surface truncate">Sodium Bicarbonate 1 tablet</span></div><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-low border border-outline-variant font-mono-data text-code-param text-on-surface-variant">21:00</span><span class="text-on-surface truncate">Calcitriol 0.25 mcg</span></div></div></td><td class="py-space-md px-space-md text-right"><button type="button" onclick="event.stopPropagation(); openPatientModal('NV-2026-4412')" class="h-7 px-space-sm bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-sm text-label-sm inline-flex items-center gap-1 transition-none"><span class="material-symbols-outlined text-[14px]">call</span><span class="">Call</span></button></td></tr><tr class="hover:bg-surface-container-high cursor-pointer transition-all border-b border-outline-variant bg-surface-container-lowest" onclick="openPatientModal('NV-2026-3190')"><td class="py-space-md px-space-md"><div class="flex items-center gap-space-md"><div><div class="font-headline-sm text-headline-sm text-primary font-bold flex items-center gap-space-xs"><span class="">Rajesh K. Verma</span></div><div class="font-mono-data text-body-sm text-on-surface-variant flex items-center gap-1.5 mt-0.5"><span class="text-outline-variant">•</span><span class="">3x / week (T-Th-Sat)</span></div></div></div></td><td class="py-space-md px-space-md"><div class="flex items-center gap-1 font-mono-data text-mono-data text-primary font-semibold"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">call</span><span class="">+919765432109</span></div><div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">emergency</span><span class="">Emergency:</span><span class="font-mono-data font-medium text-primary">+919765001122</span></div></td><td class="py-space-md px-space-md"><div class="flex items-center gap-space-xs font-mono-data text-mono-data text-primary font-semibold"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">event</span><span class="">2026-10-13</span><span class="text-on-surface-variant">•</span><span class="">11:30 AM</span></div></td><td class="py-space-md px-space-md"><div class="space-y-1.5"><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant font-mono-data text-code-param font-medium text-primary">08:30</span><span class="text-primary font-medium truncate">Clonidine 1 tab, Pantoprazole 1 tab</span></div><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-low border border-outline-variant font-mono-data text-code-param text-on-surface-variant">14:00</span><span class="text-on-surface truncate">Sevelamer 800mg 1 tablet</span></div><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-low border border-outline-variant font-mono-data text-code-param text-on-surface-variant">21:30</span><span class="text-on-surface truncate">Erythropoietin Protocol Sync</span></div></div></td><td class="py-space-md px-space-md text-right"><button type="button" onclick="event.stopPropagation(); openPatientModal('NV-2026-3190')" class="h-7 px-space-sm bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-sm text-label-sm inline-flex items-center gap-1 transition-none"><span class="material-symbols-outlined text-[14px]">call</span><span class="">Call</span></button></td></tr><tr class="hover:bg-surface-container-high cursor-pointer transition-all border-b border-outline-variant bg-surface-container-lowest" onclick="openPatientModal('NV-2026-7821')"><td class="py-space-md px-space-md"><div class="flex items-center gap-space-md"><div><div class="font-headline-sm text-headline-sm text-primary font-bold flex items-center gap-space-xs"><span class="">Ananya Sen</span></div><div class="font-mono-data text-body-sm text-on-surface-variant flex items-center gap-1.5 mt-0.5"><span class="text-outline-variant">•</span><span class="">3x / week (M-W-F)</span></div></div></div></td><td class="py-space-md px-space-md"><div class="flex items-center gap-1 font-mono-data text-mono-data text-primary font-semibold"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">call</span><span class="">+919830112233</span></div><div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">emergency</span><span class="">Emergency:</span><span class="font-mono-data font-medium text-primary">+919830554433</span></div></td><td class="py-space-md px-space-md"><div class="flex items-center gap-space-xs font-mono-data text-mono-data text-primary font-semibold"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">event</span><span class="">2026-10-14</span><span class="text-on-surface-variant">•</span><span class="">08:00 AM</span></div></td><td class="py-space-md px-space-md"><div class="space-y-1.5"><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant font-mono-data text-code-param font-medium text-primary">09:00</span><span class="text-primary font-medium truncate">Carvedilol 12.5mg, Iron Sucrose</span></div><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-low border border-outline-variant font-mono-data text-code-param text-on-surface-variant">14:00</span><span class="text-on-surface truncate">PhosLo Calcium Acetate 1 tab</span></div><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-low border border-outline-variant font-mono-data text-code-param text-on-surface-variant">22:00</span><span class="text-on-surface truncate">Rosuvastatin 10mg</span></div></div></td><td class="py-space-md px-space-md text-right"><button type="button" onclick="event.stopPropagation(); openPatientModal('NV-2026-7821')" class="h-7 px-space-sm bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-sm text-label-sm inline-flex items-center gap-1 transition-none"><span class="material-symbols-outlined text-[14px]">call</span><span class="">Call</span></button></td></tr><tr class="hover:bg-surface-container-high cursor-pointer transition-all border-b border-outline-variant bg-surface-container-lowest" onclick="openPatientModal('NV-2026-9054')"><td class="py-space-md px-space-md"><div class="flex items-center gap-space-md"><div><div class="font-headline-sm text-headline-sm text-primary font-bold flex items-center gap-space-xs"><span class="">Vikramaditya Rao</span></div><div class="font-mono-data text-body-sm text-on-surface-variant flex items-center gap-1.5 mt-0.5"><span class="text-outline-variant">•</span><span class="">2x / week (W-Sat)</span></div></div></div></td><td class="py-space-md px-space-md"><div class="flex items-center gap-1 font-mono-data text-mono-data text-primary font-semibold"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">call</span><span class="">+919940887766</span></div><div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">emergency</span><span class="">Emergency:</span><span class="font-mono-data font-medium text-primary">+919940112299</span></div></td><td class="py-space-md px-space-md"><div class="flex items-center gap-space-xs font-mono-data text-mono-data text-primary font-semibold"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">event</span><span class="">2026-10-14</span><span class="text-on-surface-variant">•</span><span class="">02:00 PM</span></div></td><td class="py-space-md px-space-md"><div class="space-y-1.5"><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant font-mono-data text-code-param font-medium text-primary">08:00</span><span class="text-primary font-medium truncate">Losartan 50mg, Furosemide 40mg</span></div><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-low border border-outline-variant font-mono-data text-code-param text-on-surface-variant">15:00</span><span class="text-on-surface truncate">Cinacalcet 30mg 1 tablet</span></div><div class="flex items-center gap-space-xs font-body-sm"><span class="px-1.5 py-0.5 bg-surface-container-low border border-outline-variant font-mono-data text-code-param text-on-surface-variant">22:00</span><span class="text-on-surface truncate">Aspirin 75mg 1 tablet</span></div></div></td><td class="py-space-md px-space-md text-right"><button type="button" onclick="event.stopPropagation(); openPatientModal('NV-2026-9054')" class="h-7 px-space-sm bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-sm text-label-sm inline-flex items-center gap-1 transition-none"><span class="material-symbols-outlined text-[14px]">call</span><span class="">Call</span></button></td></tr></tbody>
+</table>
+</div>
+</div>
+<!-- Grid View Container (Hidden initially) -->
+<div class="hidden grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-space-lg" id="gridViewContainer"><div class="bg-surface-container-lowest border border-outline-variant p-space-lg flex flex-col justify-between hover:border-primary transition-none cursor-pointer ring-1 ring-primary">
+        <div class="space-y-space-md">
+          <div class="flex items-start justify-between">
+            <div class="space-y-0.5">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-mono-data text-mono-data text-on-surface-variant">NV-2026-8941</span>
+                <span class="font-mono-data text-code-param px-1 bg-primary text-on-primary">PRIMARY</span>
+              </div>
+              <h3 class="font-headline-md text-headline-md text-primary font-bold">Devansh Poddar</h3>
+            </div>
+            <div class="w-2 h-2 bg-primary"></div>
+          </div>
+
+          <div class="border-t border-b border-outline-variant py-space-sm space-y-space-xs font-mono-data text-mono-data">
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Dialysis Slot:</span>
+              <span class="text-primary font-medium">2026-10-12 10:00 AM</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Assigned Bay:</span>
+              <span class="text-primary">Station 4B (Hemodialysis)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Primary Phone:</span>
+              <span class="text-primary">+919874770088</span>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Daily Medication Dispatches</span>
+            <div class="bg-surface-container-low p-2 border border-outline-variant font-mono-data text-mono-data text-on-surface space-y-1">
+              <div class="truncate"><span class="font-bold">09:00 AM:</span> Amlodipine 1 tablet, Telmisartan 1 tablet</div>
+              <div class="truncate"><span class="font-bold">02:30 PM:</span> Furosemide 1 tablet</div>
+              <div class="truncate"><span class="font-bold">10:30 PM:</span> Atorvastatin 2 tablets</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-space-lg pt-space-sm border-t border-outline-variant flex items-center justify-between">
+          <span class="font-label-sm text-label-sm text-on-surface-variant">Delivered (Ack)</span>
+          <button type="button" onclick="event.stopPropagation(); openPatientModal('NV-2026-8941')" class="h-7 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-sm text-label-sm">
+            Inspect Record
+          </button>
+        </div>
+      </div><div class="bg-surface-container-lowest border border-outline-variant p-space-lg flex flex-col justify-between hover:border-primary transition-none cursor-pointer ">
+        <div class="space-y-space-md">
+          <div class="flex items-start justify-between">
+            <div class="space-y-0.5">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-mono-data text-mono-data text-on-surface-variant">NV-2026-4412</span>
+                
+              </div>
+              <h3 class="font-headline-md text-headline-md text-primary font-bold">Meera Sharma</h3>
+            </div>
+            <div class="w-2 h-2 bg-primary"></div>
+          </div>
+
+          <div class="border-t border-b border-outline-variant py-space-sm space-y-space-xs font-mono-data text-mono-data">
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Dialysis Slot:</span>
+              <span class="text-primary font-medium">2026-10-13 07:30 AM</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Assigned Bay:</span>
+              <span class="text-primary">Station 2A (Hemodialysis)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Primary Phone:</span>
+              <span class="text-primary">+919810234567</span>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Daily Medication Dispatches</span>
+            <div class="bg-surface-container-low p-2 border border-outline-variant font-mono-data text-mono-data text-on-surface space-y-1">
+              <div class="truncate"><span class="font-bold">09:00 AM:</span> Torsemide 1 tablet, Metoprolol 1 tablet</div>
+              <div class="truncate"><span class="font-bold">02:30 PM:</span> Sodium Bicarbonate 1 tablet</div>
+              <div class="truncate"><span class="font-bold">10:30 PM:</span> Calcitriol 0.25 mcg</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-space-lg pt-space-sm border-t border-outline-variant flex items-center justify-between">
+          <span class="font-label-sm text-label-sm text-on-surface-variant">Delivered (Ack)</span>
+          <button type="button" onclick="event.stopPropagation(); openPatientModal('NV-2026-4412')" class="h-7 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-sm text-label-sm">
+            Inspect Record
+          </button>
+        </div>
+      </div><div class="bg-surface-container-lowest border border-outline-variant p-space-lg flex flex-col justify-between hover:border-primary transition-none cursor-pointer ">
+        <div class="space-y-space-md">
+          <div class="flex items-start justify-between">
+            <div class="space-y-0.5">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-mono-data text-mono-data text-on-surface-variant">NV-2026-3190</span>
+                
+              </div>
+              <h3 class="font-headline-md text-headline-md text-primary font-bold">Rajesh K. Verma</h3>
+            </div>
+            <div class="w-2 h-2 bg-primary"></div>
+          </div>
+
+          <div class="border-t border-b border-outline-variant py-space-sm space-y-space-xs font-mono-data text-mono-data">
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Dialysis Slot:</span>
+              <span class="text-primary font-medium">2026-10-13 11:30 AM</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Assigned Bay:</span>
+              <span class="text-primary">Station 5C (Hemodiafiltration)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Primary Phone:</span>
+              <span class="text-primary">+919765432109</span>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Daily Medication Dispatches</span>
+            <div class="bg-surface-container-low p-2 border border-outline-variant font-mono-data text-mono-data text-on-surface space-y-1">
+              <div class="truncate"><span class="font-bold">09:00 AM:</span> Clonidine 1 tablet, Pantoprazole 1 tablet</div>
+              <div class="truncate"><span class="font-bold">02:30 PM:</span> Sevelamer 800mg 1 tablet</div>
+              <div class="truncate"><span class="font-bold">10:30 PM:</span> Erythropoietin Protocol Sync</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-space-lg pt-space-sm border-t border-outline-variant flex items-center justify-between">
+          <span class="font-label-sm text-label-sm text-on-surface-variant">Delivered (Ack)</span>
+          <button type="button" onclick="event.stopPropagation(); openPatientModal('NV-2026-3190')" class="h-7 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-sm text-label-sm">
+            Inspect Record
+          </button>
+        </div>
+      </div><div class="bg-surface-container-lowest border border-outline-variant p-space-lg flex flex-col justify-between hover:border-primary transition-none cursor-pointer ">
+        <div class="space-y-space-md">
+          <div class="flex items-start justify-between">
+            <div class="space-y-0.5">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-mono-data text-mono-data text-on-surface-variant">NV-2026-7821</span>
+                
+              </div>
+              <h3 class="font-headline-md text-headline-md text-primary font-bold">Ananya Sen</h3>
+            </div>
+            <div class="w-2 h-2 bg-primary"></div>
+          </div>
+
+          <div class="border-t border-b border-outline-variant py-space-sm space-y-space-xs font-mono-data text-mono-data">
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Dialysis Slot:</span>
+              <span class="text-primary font-medium">2026-10-14 08:00 AM</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Assigned Bay:</span>
+              <span class="text-primary">Station 1B (Hemodialysis)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Primary Phone:</span>
+              <span class="text-primary">+919830112233</span>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Daily Medication Dispatches</span>
+            <div class="bg-surface-container-low p-2 border border-outline-variant font-mono-data text-mono-data text-on-surface space-y-1">
+              <div class="truncate"><span class="font-bold">09:00 AM:</span> Carvedilol 12.5mg, Iron Sucrose note</div>
+              <div class="truncate"><span class="font-bold">02:30 PM:</span> PhosLo Calcium Acetate 1 tablet</div>
+              <div class="truncate"><span class="font-bold">10:30 PM:</span> Rosuvastatin 10mg</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-space-lg pt-space-sm border-t border-outline-variant flex items-center justify-between">
+          <span class="font-label-sm text-label-sm text-on-surface-variant">Pending Dispatch</span>
+          <button type="button" onclick="event.stopPropagation(); openPatientModal('NV-2026-7821')" class="h-7 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-sm text-label-sm">
+            Inspect Record
+          </button>
+        </div>
+      </div><div class="bg-surface-container-lowest border border-outline-variant p-space-lg flex flex-col justify-between hover:border-primary transition-none cursor-pointer ">
+        <div class="space-y-space-md">
+          <div class="flex items-start justify-between">
+            <div class="space-y-0.5">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-mono-data text-mono-data text-on-surface-variant">NV-2026-9054</span>
+                
+              </div>
+              <h3 class="font-headline-md text-headline-md text-primary font-bold">Vikramaditya Rao</h3>
+            </div>
+            <div class="w-2 h-2 bg-primary"></div>
+          </div>
+
+          <div class="border-t border-b border-outline-variant py-space-sm space-y-space-xs font-mono-data text-mono-data">
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Dialysis Slot:</span>
+              <span class="text-primary font-medium">2026-10-14 02:00 PM</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Assigned Bay:</span>
+              <span class="text-primary">Station 6B (Hemodialysis)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Primary Phone:</span>
+              <span class="text-primary">+919940887766</span>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Daily Medication Dispatches</span>
+            <div class="bg-surface-container-low p-2 border border-outline-variant font-mono-data text-mono-data text-on-surface space-y-1">
+              <div class="truncate"><span class="font-bold">09:00 AM:</span> Losartan 50mg, Furosemide 40mg</div>
+              <div class="truncate"><span class="font-bold">02:30 PM:</span> Cinacalcet 30mg 1 tablet</div>
+              <div class="truncate"><span class="font-bold">10:30 PM:</span> Aspirin 75mg 1 tablet</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-space-lg pt-space-sm border-t border-outline-variant flex items-center justify-between">
+          <span class="font-label-sm text-label-sm text-on-surface-variant">Delivered (Ack)</span>
+          <button type="button" onclick="event.stopPropagation(); openPatientModal('NV-2026-9054')" class="h-7 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-sm text-label-sm">
+            Inspect Record
+          </button>
+        </div>
+      </div></div>
+<!-- Bottom Dialysis Operational Protocol Panel -->
+
+</div>
+<!-- PATIENT DETAIL POPUP MODAL (Clean, Monochromatic Swiss Precision) -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center p-space-md sm:p-space-xl" id="patientModal">
+<!-- Non-blurred 40% opaque backdrop curtain -->
+<div class="fixed inset-0 bg-primary/40 transition-none" id="modalBackdrop" onclick="closePatientModal()"></div>
+<!-- Modal Box (Level 3 depth: pure white with crisp 1px solid #09090B border) -->
+<div class="relative w-full max-w-4xl bg-surface-container-lowest border-2 border-primary z-10 max-h-[92vh] flex flex-col shadow-none">
+<!-- Modal Header -->
+<div class="p-space-lg border-b border-outline-variant bg-surface-container-low flex items-start justify-between">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-mono-data text-mono-data text-primary uppercase font-bold" id="mMrn">#NV-2026-8941</span>
+<span class="inline-block w-1.5 h-1.5 bg-primary"></span>
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 border border-outline-variant bg-surface-container-lowest font-mono-data text-mono-data text-primary">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+              Active Schedule / Voice Dispatches Enabled
+            </span>
+<span class="font-mono-data text-mono-data text-on-surface-variant" id="mBay">Station 4B (Hemodialysis)</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-primary font-bold tracking-tight" id="mName">Devansh Poddar</h2>
+</div>
+<button class="h-8 w-8 flex items-center justify-center border border-outline-variant hover:border-primary bg-surface-container-lowest text-primary transition-none" onclick="closePatientModal()" title="Close dialog (Esc)" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Modal Body (Scrollable dense clinical telemetry) -->
+<div class="p-space-lg overflow-y-auto space-y-space-lg text-on-surface">
+<!-- Section 1: Contact & Clinic Routing -->
+<div class="border border-outline-variant bg-surface-container-lowest p-space-md space-y-space-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-space-xs">
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold">1. Contact &amp; Clinic Routing Telemetry</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">Validated Carrier Route</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<div class="border border-outline-variant p-space-sm bg-surface-container-low">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Patient Direct Phone</div>
+<div class="font-mono-data text-mono-data text-primary font-semibold mt-0.5" id="mPhone">+919874770088</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">SMS &amp; Voice Automated Destination</div>
+</div>
+<div class="border border-outline-variant p-space-sm bg-surface-container-low">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Front Desk Clinic Line</div>
+<div class="font-mono-data text-mono-data text-primary font-semibold mt-0.5" id="mFrontDesk">+919874770088</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">Immediate Inbound Reception Loop</div>
+</div>
+<div class="border border-outline-variant p-space-sm bg-surface-container-low">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Emergency Contact (Next of Kin)</div>
+<div class="font-mono-data text-mono-data text-primary font-semibold mt-0.5" id="mEmergency">+919830875614</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1" id="mRelation">Relation: Primary Caregiver</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Upcoming Dialysis Appointment -->
+<div class="border border-outline-variant bg-surface-container-lowest p-space-md space-y-space-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-space-xs">
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold">2. Dialysis Clinical Session Booking</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">Recurring Cycle: Mon / Thu / Sat</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<div class="border border-outline-variant p-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Session Date</span>
+<div class="font-headline-md text-headline-md text-primary mt-0.5 font-bold" id="mDialysisDate">2026-10-12</div>
+<div class="font-mono-data text-mono-data text-on-surface-variant">Scheduled calendar lock</div>
+</div>
+<div class="border border-outline-variant p-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Session Time</span>
+<div class="font-headline-md text-headline-md text-primary mt-0.5 font-bold" id="mDialysisTime">10:00 AM</div>
+<div class="font-mono-data text-mono-data text-on-surface-variant">Duration: 4.0 Hours</div>
+</div>
+<div class="border border-outline-variant p-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Unit &amp; Bay Assignment</span>
+<div class="font-headline-md text-headline-md text-primary mt-0.5 font-bold" id="mDialysisBay">Station 4B (Hemodialysis)</div>
+<div class="font-mono-data text-mono-data text-on-surface-variant">Dialyzer: High-flux F80</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Daily Voice Medication Schedules -->
+<div class="border border-outline-variant bg-surface-container-lowest p-space-md space-y-space-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-space-xs">
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold">3. Daily Voice Medication Schedules (Voice Agent Dispatch Engine)</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant">Automated Outbound Voice Queue</span>
+</div>
+<div class="space-y-space-sm">
+<!-- Morning -->
+<div class="border border-outline-variant p-space-sm bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-20 font-mono-data text-mono-data bg-primary text-on-primary px-2 py-1 text-center font-bold">
+                  09:00 AM
+                </div>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Morning Nephro Regimen</div>
+<div class="font-body-md text-body-md text-primary font-medium" id="mMedMorning">Amlodipine 1 tablet, Telmisartan 1 tablet</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-mono-data text-mono-data">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+<span class="">Dispatch: TTS Voice Call</span>
+</div>
+</div>
+<!-- Evening -->
+<div class="border border-outline-variant p-space-sm bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-20 font-mono-data text-mono-data bg-primary text-on-primary px-2 py-1 text-center font-bold">
+                  02:30 PM
+                </div>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Afternoon Regimen</div>
+<div class="font-body-md text-body-md text-primary font-medium" id="mMedEvening">Furosemide 1 tablet</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-mono-data text-mono-data">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+<span class="">Dispatch: TTS Voice Call</span>
+</div>
+</div>
+<!-- Dinner -->
+<div class="border border-outline-variant p-space-sm bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-20 font-mono-data text-mono-data bg-primary text-on-primary px-2 py-1 text-center font-bold">
+                  10:30 PM
+                </div>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Dinner / Night Regimen</div>
+<div class="font-body-md text-body-md text-primary font-medium" id="mMedDinner">Atorvastatin 2 tablets</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-mono-data text-mono-data">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+<span class="">Dispatch: TTS Voice Call</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: Voice Agent Simulation / Script Preview -->
+<div class="border border-outline-variant bg-surface-container-low p-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider font-semibold">4. Voice Agent Script Synthesis Simulation</span>
+<span class="font-mono-data text-mono-data text-primary font-semibold">Model: NEPHRO-TTS-VOICE-V3</span>
+</div>
+<div class="border-l-2 border-primary bg-surface-container-lowest p-space-md font-body-sm text-body-sm text-on-surface relative">
+<div class="flex items-center gap-space-xs mb-space-xs text-on-surface-variant font-mono-data text-mono-data uppercase">
+<span class="material-symbols-outlined text-[16px]">graphic_eq</span>
+<span class="">Synthesized Agent Audio Transcript Preview:</span>
+</div>
+<p class="italic leading-relaxed font-body-md" id="mVoicePreview">
+              "Hello Devansh, this is your NephroVoice dialysis clinic reminder. It is 9:00 AM, please take your morning medicine: Amlodipine 1 tablet and Telmisartan 1 tablet."
+            </p>
+</div>
+<!-- Simulation Audio bar feedback -->
+<div class="hidden border border-outline-variant bg-surface-container-lowest p-space-sm" id="audioSimulationStrip">
+<div class="flex items-center justify-between mb-1">
+<span class="font-mono-data text-mono-data text-primary uppercase font-medium">Outbound Dialing: Simulated Carrier Handshake...</span>
+<span class="font-mono-data text-mono-data text-primary" id="callStatusText">Ringing +919874770088</span>
+</div>
+<div class="w-full bg-surface-variant h-1.5">
+<div class="bg-primary h-1.5 w-1/3 transition-all duration-300" id="audioProgressBar"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer Action Bar -->
+<div class="p-space-lg border-t border-outline-variant bg-surface-container-lowest flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<button class="h-8 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-md text-label-md flex items-center gap-space-xs transition-none" onclick="triggerTestCall()" type="button">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span id="testCallBtnLabel" class="">Trigger Test Call</span>
+</button>
+<button class="h-8 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-md text-label-md flex items-center gap-space-xs transition-none" onclick="editTelemetryPrompt()" type="button">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+<span class="">Edit Telemetry</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="h-8 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-on-surface-variant font-label-md text-label-md transition-none" onclick="closePatientModal()" type="button">
+            Cancel
+          </button>
+<button class="h-8 px-space-md bg-primary text-on-primary border border-primary hover:bg-inverse-surface font-label-md text-label-md flex items-center gap-space-xs transition-none" onclick="saveTelemetryMock()" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span class="">Save Changes</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- PATIENT REGISTRATION SLIDEOUT / MODAL (Stub for new patients) -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center p-space-md" id="registerModal">
+<div class="fixed inset-0 bg-primary/40 transition-none" onclick="closeRegisterModal()"></div>
+<div class="relative w-full max-w-lg bg-surface-container-lowest border-2 border-primary z-10 p-space-lg space-y-space-md">
+<div class="flex items-center justify-between border-b border-outline-variant pb-space-sm">
+<div>
+<span class="font-mono-data text-mono-data text-on-surface-variant uppercase">Clinical Intake</span>
+<h3 class="font-headline-lg text-headline-lg text-primary font-bold">Register Dialysis Patient</h3>
+</div>
+<button class="text-on-surface-variant hover:text-primary" onclick="closeRegisterModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="space-y-space-sm" id="newPatientForm" onsubmit="handleNewPatientSubmit(event)">
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Full Legal Name</label>
+<input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="regName" placeholder="e.g. Arjun Mukherjee" required="" type="text">
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Primary Phone</label>
+<input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary" id="regPhone" placeholder="+9198XXXXXXXX" required="" type="text">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Emergency Contact</label>
+<input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-mono-data text-mono-data focus:outline-none focus:border-primary" id="regEmergency" placeholder="+9198XXXXXXXX" required="" type="text">
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Next Dialysis Date</label>
+<input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="regDate" required="" type="date" value="2026-10-14">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Session Slot</label>
+<input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="regTime" required="" type="text" value="08:00 AM">
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Morning Medication Dosage</label>
+<input class="w-full h-8 px-2 bg-surface-container-lowest border border-outline-variant font-body-sm text-body-sm focus:outline-none focus:border-primary" id="regMedMorning" type="text" value="Amlodipine 1 tablet (9:00 AM)">
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-sm border-t border-outline-variant">
+<button class="h-8 px-space-md border border-outline-variant font-label-md text-label-md" onclick="closeRegisterModal()" type="button">Cancel</button>
+<button class="h-8 px-space-md bg-primary text-on-primary border border-primary font-label-md text-label-md" type="submit">Complete Registration</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Notification Banner Toast -->
+<div class="fixed bottom-space-lg right-space-lg z-50 hidden bg-primary text-on-primary border border-primary px-space-lg py-space-sm font-mono-data text-mono-data flex items-center gap-space-sm" id="toastNotification">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span id="toastMessage" class="">Voice Gateway: System operational</span>
+</div>
+</div>
+<script>
+  // Clinical Patient Registry Data Store (Full compliance with required specifications)
+  const patientRegistry = [
+    {
+      id: "NV-2026-8941",
+      patient_name: "Devansh Poddar",
+      patient_phone: "+919874770088",
+      emergency_contact: "+919830875614",
+      front_desk_number: "+919874770088",
+      relationship: "Next of Kin (Primary)",
+      dialysis_appointment_date: "2026-10-12",
+      dialysis_appointment_time: "10:00 AM",
+      dialysis_bay: "Station 4B (Hemodialysis)",
+      morning_medicines: "Amlodipine 1 tablet, Telmisartan 1 tablet",
+      morning_time: "9:00 AM",
+      evening_medicines: "Furosemide 1 tablet",
+      evening_time: "2:30 PM",
+      dinner_medicines: "Atorvastatin 2 tablets",
+      dinner_time: "10:30 PM",
+      voice_status: "Active Dispatches",
+      last_call_status: "Delivered (Ack)",
+      frequency: "3x / week (M-W-F)"
+    },
+    {
+      id: "NV-2026-4412",
+      patient_name: "Meera Sharma",
+      patient_phone: "+919810234567",
+      emergency_contact: "+919810998877",
+      front_desk_number: "+919874770088",
+      relationship: "Spouse",
+      dialysis_appointment_date: "2026-10-13",
+      dialysis_appointment_time: "07:30 AM",
+      dialysis_bay: "Station 2A (Hemodialysis)",
+      morning_medicines: "Torsemide 1 tablet, Metoprolol 1 tablet",
+      morning_time: "8:00 AM",
+      evening_medicines: "Sodium Bicarbonate 1 tablet",
+      evening_time: "1:00 PM",
+      dinner_medicines: "Calcitriol 0.25 mcg",
+      dinner_time: "9:00 PM",
+      voice_status: "Active Dispatches",
+      last_call_status: "Delivered (Ack)",
+      frequency: "2x / week (T-Th)"
+    },
+    {
+      id: "NV-2026-3190",
+      patient_name: "Rajesh K. Verma",
+      patient_phone: "+919765432109",
+      emergency_contact: "+919765001122",
+      front_desk_number: "+919874770088",
+      relationship: "Son",
+      dialysis_appointment_date: "2026-10-13",
+      dialysis_appointment_time: "11:30 AM",
+      dialysis_bay: "Station 5C (Hemodiafiltration)",
+      morning_medicines: "Clonidine 1 tablet, Pantoprazole 1 tablet",
+      morning_time: "8:30 AM",
+      evening_medicines: "Sevelamer 800mg 1 tablet",
+      evening_time: "2:00 PM",
+      dinner_medicines: "Erythropoietin Protocol Sync",
+      dinner_time: "9:30 PM",
+      voice_status: "Active Dispatches",
+      last_call_status: "Delivered (Ack)",
+      frequency: "3x / week (T-Th-Sat)"
+    },
+    {
+      id: "NV-2026-7821",
+      patient_name: "Ananya Sen",
+      patient_phone: "+919830112233",
+      emergency_contact: "+919830554433",
+      front_desk_number: "+919874770088",
+      relationship: "Daughter",
+      dialysis_appointment_date: "2026-10-14",
+      dialysis_appointment_time: "08:00 AM",
+      dialysis_bay: "Station 1B (Hemodialysis)",
+      morning_medicines: "Carvedilol 12.5mg, Iron Sucrose note",
+      morning_time: "9:00 AM",
+      evening_medicines: "PhosLo Calcium Acetate 1 tablet",
+      evening_time: "2:00 PM",
+      dinner_medicines: "Rosuvastatin 10mg",
+      dinner_time: "10:00 PM",
+      voice_status: "Active Dispatches",
+      last_call_status: "Pending Dispatch",
+      frequency: "3x / week (M-W-F)"
+    },
+    {
+      id: "NV-2026-9054",
+      patient_name: "Vikramaditya Rao",
+      patient_phone: "+919940887766",
+      emergency_contact: "+919940112299",
+      front_desk_number: "+919874770088",
+      relationship: "Brother",
+      dialysis_appointment_date: "2026-10-14",
+      dialysis_appointment_time: "02:00 PM",
+      dialysis_bay: "Station 6B (Hemodialysis)",
+      morning_medicines: "Losartan 50mg, Furosemide 40mg",
+      morning_time: "8:00 AM",
+      evening_medicines: "Cinacalcet 30mg 1 tablet",
+      evening_time: "3:00 PM",
+      dinner_medicines: "Aspirin 75mg 1 tablet",
+      dinner_time: "10:00 PM",
+      voice_status: "Active Dispatches",
+      last_call_status: "Delivered (Ack)",
+      frequency: "2x / week (W-Sat)"
+    }
+  ];
+
+  let currentActivePatient = patientRegistry[0]; // Default to Devansh Poddar
+  let currentView = 'table';
+
+  // Render Table View
+  function renderTable(patients) {
+    const tbody = document.getElementById("patientTableBody");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    patients.forEach((p) => {
+      const isPrimary = p.patient_name === "Devansh Poddar";
+      const tr = document.createElement("tr");
+      tr.className = "hover:bg-surface-container cursor-pointer transition-none group " + (isPrimary ? "bg-surface-container-lowest" : "bg-surface-container-lowest");
+      tr.onclick = () => openPatientModal(p.id);
+
+      tr.innerHTML = `
+        <td class="py-space-md px-space-md">
+          <div class="flex items-center gap-space-sm">
+            <div class="w-8 h-8 bg-surface-container-low border border-outline-variant flex items-center justify-center font-mono-data text-mono-data font-bold text-primary group-hover:bg-primary group-hover:text-on-primary">
+              ${p.patient_name.split(' ').map(n=>n[0]).join('')}
+            </div>
+            <div>
+              <div class="font-headline-sm text-headline-sm text-primary flex items-center gap-space-xs">
+                <span>${p.patient_name}</span>
+                ${isPrimary ? '<span class="font-mono-data text-code-param px-1 border border-primary bg-primary text-on-primary">PRIMARY</span>' : ''}
+              </div>
+              <div class="font-mono-data text-mono-data text-on-surface-variant flex items-center gap-1">
+                <span>${p.id}</span>
+                <span>&bull;</span>
+                <span>${p.frequency}</span>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="py-space-md px-space-md">
+          <div class="font-mono-data text-mono-data text-primary font-medium">${p.patient_phone}</div>
+          <div class="font-label-sm text-label-sm text-on-surface-variant">Emergency: <span class="font-mono-data">${p.emergency_contact}</span></div>
+        </td>
+        <td class="py-space-md px-space-md">
+          <div class="flex items-center gap-space-xs font-mono-data text-mono-data text-primary font-semibold">
+            <span class="material-symbols-outlined text-[16px]">event</span>
+            <span>${p.dialysis_appointment_date}</span>
+            <span>${p.dialysis_appointment_time}</span>
+          </div>
+          <div class="font-label-sm text-label-sm text-on-surface-variant">${p.dialysis_bay}</div>
+        </td>
+        <td class="py-space-md px-space-md max-w-xs">
+          <div class="space-y-0.5">
+            <div class="font-mono-data text-mono-data text-primary truncate" title="AM: ${p.morning_medicines}">
+              <span class="text-on-surface-variant">09:00:</span> ${p.morning_medicines}
+            </div>
+            <div class="font-mono-data text-mono-data text-on-surface-variant truncate" title="PM: ${p.evening_medicines}">
+              <span>14:30:</span> ${p.evening_medicines}
+            </div>
+            <div class="font-mono-data text-mono-data text-on-surface-variant truncate" title="Night: ${p.dinner_medicines}">
+              <span>22:30:</span> ${p.dinner_medicines}
+            </div>
+          </div>
+        </td>
+        <td class="py-space-md px-space-md">
+          <div class="inline-flex items-center gap-1 px-1.5 py-0.5 border border-outline-variant bg-surface-container-low font-mono-data text-mono-data text-primary">
+            <span class="w-1.5 h-1.5 bg-primary"></span>
+            <span>${p.voice_status}</span>
+          </div>
+          <div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">${p.last_call_status}</div>
+        </td>
+        <td class="py-space-md px-space-md text-right">
+          <button 
+            type="button" 
+            onclick="event.stopPropagation(); openPatientModal('${p.id}')"
+            class="h-7 px-space-sm bg-surface-container-lowest border border-outline-variant group-hover:border-primary text-primary font-label-sm text-label-sm inline-flex items-center gap-1 transition-none"
+          >
+            <span class="material-symbols-outlined text-[14px]">visibility</span>
+            <span>Telemetry</span>
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Render Grid View
+  function renderGrid(patients) {
+    const container = document.getElementById("gridViewContainer");
+    if (!container) return;
+    container.innerHTML = "";
+
+    patients.forEach((p) => {
+      const isPrimary = p.patient_name === "Devansh Poddar";
+      const card = document.createElement("div");
+      card.className = "bg-surface-container-lowest border border-outline-variant p-space-lg flex flex-col justify-between hover:border-primary transition-none cursor-pointer " + (isPrimary ? "ring-1 ring-primary" : "");
+      card.onclick = () => openPatientModal(p.id);
+
+      card.innerHTML = `
+        <div class="space-y-space-md">
+          <div class="flex items-start justify-between">
+            <div class="space-y-0.5">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-mono-data text-mono-data text-on-surface-variant">${p.id}</span>
+                ${isPrimary ? '<span class="font-mono-data text-code-param px-1 bg-primary text-on-primary">PRIMARY</span>' : ''}
+              </div>
+              <h3 class="font-headline-md text-headline-md text-primary font-bold">${p.patient_name}</h3>
+            </div>
+            <div class="w-2 h-2 bg-primary"></div>
+          </div>
+
+          <div class="border-t border-b border-outline-variant py-space-sm space-y-space-xs font-mono-data text-mono-data">
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Dialysis Slot:</span>
+              <span class="text-primary font-medium">${p.dialysis_appointment_date} ${p.dialysis_appointment_time}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Assigned Bay:</span>
+              <span class="text-primary">${p.dialysis_bay}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant uppercase font-label-sm text-label-sm">Primary Phone:</span>
+              <span class="text-primary">${p.patient_phone}</span>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Daily Medication Dispatches</span>
+            <div class="bg-surface-container-low p-2 border border-outline-variant font-mono-data text-mono-data text-on-surface space-y-1">
+              <div class="truncate"><span class="font-bold">09:00 AM:</span> ${p.morning_medicines}</div>
+              <div class="truncate"><span class="font-bold">02:30 PM:</span> ${p.evening_medicines}</div>
+              <div class="truncate"><span class="font-bold">10:30 PM:</span> ${p.dinner_medicines}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-space-lg pt-space-sm border-t border-outline-variant flex items-center justify-between">
+          <span class="font-label-sm text-label-sm text-on-surface-variant">${p.last_call_status}</span>
+          <button 
+            type="button" 
+            onclick="event.stopPropagation(); openPatientModal('${p.id}')"
+            class="h-7 px-space-md bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-label-sm text-label-sm"
+          >
+            Inspect Record
+          </button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Switch between List and Grid views
+  function switchView(view) {
+    currentView = view;
+    const tableCont = document.getElementById("tableViewContainer");
+    const gridCont = document.getElementById("gridViewContainer");
+    const btnTable = document.getElementById("btnViewTable");
+    const btnGrid = document.getElementById("btnViewGrid");
+
+    if (view === 'table') {
+      tableCont.classList.remove("hidden");
+      gridCont.classList.add("hidden");
+      btnTable.className = "view-btn flex items-center gap-space-xs px-space-md py-1 font-label-md text-label-md bg-surface-container-lowest text-primary border border-outline-variant transition-none";
+      btnGrid.className = "view-btn flex items-center gap-space-xs px-space-md py-1 font-label-md text-label-md text-on-surface-variant hover:text-on-surface border border-transparent transition-none";
+    } else {
+      tableCont.classList.add("hidden");
+      gridCont.classList.remove("hidden");
+      btnGrid.className = "view-btn flex items-center gap-space-xs px-space-md py-1 font-label-md text-label-md bg-surface-container-lowest text-primary border border-outline-variant transition-none";
+      btnTable.className = "view-btn flex items-center gap-space-xs px-space-md py-1 font-label-md text-label-md text-on-surface-variant hover:text-on-surface border border-transparent transition-none";
+    }
+  }
+
+  // Open & populate the patient modal
+  function openPatientModal(patientId) {
+    const patient = patientRegistry.find(p => p.id === patientId) || patientRegistry[0];
+    currentActivePatient = patient;
+
+    // Populate modal elements
+    document.getElementById("mName").textContent = patient.patient_name;
+    document.getElementById("mMrn").textContent = "#" + patient.id;
+    document.getElementById("mBay").textContent = patient.dialysis_bay;
+    document.getElementById("mPhone").textContent = patient.patient_phone;
+    document.getElementById("mFrontDesk").textContent = patient.front_desk_number;
+    document.getElementById("mEmergency").textContent = patient.emergency_contact;
+    document.getElementById("mRelation").textContent = "Relation: " + (patient.relationship || "Caregiver");
+
+    document.getElementById("mDialysisDate").textContent = patient.dialysis_appointment_date;
+    document.getElementById("mDialysisTime").textContent = patient.dialysis_appointment_time;
+    document.getElementById("mDialysisBay").textContent = patient.dialysis_bay;
+
+    document.getElementById("mMedMorning").textContent = patient.morning_medicines;
+    document.getElementById("mMedEvening").textContent = patient.evening_medicines;
+    document.getElementById("mMedDinner").textContent = patient.dinner_medicines;
+
+    // Synthesized speech script preview
+    const previewText = `Hello ${patient.patient_name.split(' ')[0]}, this is your NephroVoice dialysis clinic reminder. It is ${patient.morning_time || '9:00 AM'}, please take your morning medicine: ${patient.morning_medicines}. Your next dialysis booking is on ${patient.dialysis_appointment_date} at ${patient.dialysis_appointment_time} in ${patient.dialysis_bay}.`;
+    document.getElementById("mVoicePreview").textContent = `"${previewText}"`;
+
+    // Hide any previous call simulator
+    document.getElementById("audioSimulationStrip").classList.add("hidden");
+
+    // Display modal
+    document.getElementById("patientModal").classList.remove("hidden");
+  }
+
+  function closePatientModal() {
+    document.getElementById("patientModal").classList.add("hidden");
+  }
+
+  // Trigger test call simulation
+  function triggerTestCall() {
+    const strip = document.getElementById("audioSimulationStrip");
+    const bar = document.getElementById("audioProgressBar");
+    const status = document.getElementById("callStatusText");
+    const btnLabel = document.getElementById("testCallBtnLabel");
+
+    strip.classList.remove("hidden");
+    status.textContent = `Connecting outbound SIP trunk to ${currentActivePatient.patient_phone}...`;
+    bar.style.width = "10%";
+    btnLabel.textContent = "Connecting...";
+
+    setTimeout(() => {
+      bar.style.width = "45%";
+      status.textContent = `Dialing recipient ${currentActivePatient.patient_name} &bull; Carrier Ack [200 OK]`;
+    }, 900);
+
+    setTimeout(() => {
+      bar.style.width = "85%";
+      status.textContent = `Playing Synthesized TTS NephroVoice Stream...`;
+    }, 1800);
+
+    setTimeout(() => {
+      bar.style.width = "100%";
+      status.textContent = `Call Complete &bull; Patient Input DTMF: 1 (Medication Confirmed)`;
+      btnLabel.textContent = "Trigger Test Call";
+      showToast(`Outbound voice test dispatch completed for ${currentActivePatient.patient_name}`);
+    }, 3200);
+  }
+
+  function editTelemetryPrompt() {
+    const newMorning = prompt("Update Morning Medication dosage instructions:", currentActivePatient.morning_medicines);
+    if (newMorning !== null && newMorning.trim() !== "") {
+      currentActivePatient.morning_medicines = newMorning.trim();
+      document.getElementById("mMedMorning").textContent = currentActivePatient.morning_medicines;
+      renderTable(patientRegistry);
+      renderGrid(patientRegistry);
+      showToast("Clinical dosage updated in session buffer");
+    }
+  }
+
+  function saveTelemetryMock() {
+    showToast(`Telemetry locked and synchronized with HL7 Voice Core for ${currentActivePatient.patient_name}`);
+    closePatientModal();
+  }
+
+  function triggerGlobalSync() {
+    const btnLabel = document.getElementById("syncBtnLabel");
+    btnLabel.textContent = "Syncing HL7/FHIR...";
+    setTimeout(() => {
+      btnLabel.textContent = "Sync Voice Backend";
+      showToast("Voice Dispatch Backend Synced: 5 queues active, 0 drops");
+    }, 800);
+  }
+
+  function openRegisterModal() {
+    document.getElementById("registerModal").classList.remove("hidden");
+  }
+
+  function closeRegisterModal() {
+    document.getElementById("registerModal").classList.add("hidden");
+  }
+
+  function handleNewPatientSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById("regName").value;
+    const phone = document.getElementById("regPhone").value;
+    const emergency = document.getElementById("regEmergency").value;
+    const date = document.getElementById("regDate").value;
+    const time = document.getElementById("regTime").value;
+    const morning = document.getElementById("regMedMorning").value;
+
+    const newPat = {
+      id: "NV-2026-" + Math.floor(1000 + Math.random() * 9000),
+      patient_name: name,
+      patient_phone: phone,
+      emergency_contact: emergency,
+      front_desk_number: "+919874770088",
+      relationship: "Designated Relative",
+      dialysis_appointment_date: date,
+      dialysis_appointment_time: time,
+      dialysis_bay: "Station 3A (Hemodialysis)",
+      morning_medicines: morning,
+      morning_time: "9:00 AM",
+      evening_medicines: "Furosemide 1 tablet",
+      evening_time: "2:30 PM",
+      dinner_medicines: "Atorvastatin 1 tablet",
+      dinner_time: "10:00 PM",
+      voice_status: "Active Dispatches",
+      last_call_status: "Scheduled",
+      frequency: "3x / week (Pending)"
+    };
+
+    patientRegistry.unshift(newPat);
+    renderTable(patientRegistry);
+    renderGrid(patientRegistry);
+    closeRegisterModal();
+    showToast(`Patient ${name} registered into NephroVoice queue`);
+    openPatientModal(newPat.id);
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById("toastNotification");
+    const msgEl = document.getElementById("toastMessage");
+    msgEl.textContent = msg;
+    toast.classList.remove("hidden");
+    setTimeout(() => {
+      toast.classList.add("hidden");
+    }, 3500);
+  }
+
+  // Filter search handling
+  document.getElementById("registrySearch")?.addEventListener("input", function(e) {
+    const q = e.target.value.toLowerCase().trim();
+    const filtered = patientRegistry.filter(p => {
+      return p.patient_name.toLowerCase().includes(q) ||
+             p.patient_phone.toLowerCase().includes(q) ||
+             p.id.toLowerCase().includes(q) ||
+             p.dialysis_appointment_date.toLowerCase().includes(q);
+    });
+    renderTable(filtered);
+    renderGrid(filtered);
+  });
+
+  // Keyboard shortcut: Escape closes modals
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+      closePatientModal();
+      closeRegisterModal();
+    }
+  });
+
+  // Initial Boot
+  window.addEventListener("DOMContentLoaded", () => {
+    renderTable(patientRegistry);
+    renderGrid(patientRegistry);
+  });
+</script></main></div>
+
+</body></html>

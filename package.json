@@ -1,0 +1,15 @@
+{
+  "name": "premere-clinic",
+  "version": "1.0.0",
+  "description": "Receptionist console for Premere Clinic: patient intake + Sarvam Voice Agent outbound campaigns",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server/index.js",
+    "dev": "node --watch --env-file-if-exists=.env server/index.js",
+    "dry-run": "node --env-file-if-exists=.env scripts/dry-run.js"
+  }
+}

@@ -1,0 +1,11 @@
+node_modules
+.DS_Store
+*.log
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Local patient database (contains PHI)
+data/
