@@ -46,7 +46,7 @@ function requireReady({ needCampaign = true } = {}) {
 
 // ── Queue patients ──────────────────────────────────────────────────────────
 
-export async function queuePatients(patientIds, { slotsByPatientId = {}, slot = null, force = false } = {}) {
+export async function queuePatients(patientIds, { slotsByPatientId = {}, slot = null, force = false, cohortName = null } = {}) {
   const ids = [...new Set((patientIds ?? []).map(Number).filter(Number.isInteger))];
   if (!ids.length) throw new AppError(400, 'Select at least one patient.');
   if (ids.length > 1000) throw new AppError(400, 'Sarvam accepts at most 1000 patients per batch.');
@@ -66,7 +66,7 @@ export async function queuePatients(patientIds, { slotsByPatientId = {}, slot = 
       skipped.push({ id, name: p.name, reason: 'not in ALLOWED_PHONE_NUMBERS' });
       continue;
     }
-    if (p.call_status === 'queued') { skipped.push({ id, name: p.name, reason: 'already queued' }); continue; }
+    if (!force && p.call_status === 'queued') { skipped.push({ id, name: p.name, reason: 'already queued' }); continue; }
 
     // Rate limiting & spam prevention: 3-minute cooldown per patient unless force is passed
     if (!force && p.queued_at) {
@@ -90,7 +90,8 @@ export async function queuePatients(patientIds, { slotsByPatientId = {}, slot = 
   if (!users.length) throw new AppError(400, 'No patients could be queued.', { skipped });
 
   const stamp = new Date().toLocaleString('sv-SE', { timeZone: 'Asia/Kolkata' }).replace(/[:]/g, '-');
-  const body = sarvam.buildStreamCohortBody(`Reception ${stamp}`, users);
+  const cohortTitle = cohortName || `Reception ${stamp}`;
+  const body = sarvam.buildStreamCohortBody(cohortTitle, users);
   const url = sarvam.streamCohortUrl(campaignId);
 
   if (config.dryRun) {
@@ -112,7 +113,7 @@ export async function queuePatients(patientIds, { slotsByPatientId = {}, slot = 
   for (const p of included) {
     store.patchPatientInternal(p.id, { call_status: 'queued', cohort_id: res.cohort_id, queued_at: queuedAt });
   }
-  store.logActivity('queued', `Queued ${included.length} patient(s) into the campaign (cohort ${res.cohort_id}).`);
+  store.logActivity('queued', `Queued ${included.length} patient(s) into campaign batch "${cohortTitle}" (cohort ${res.cohort_id}).`);
   return { dryRun: false, queued: included.length, skipped, cohort: res };
 }
 
@@ -120,6 +121,9 @@ export async function queuePatients(patientIds, { slotsByPatientId = {}, slot = 
 
 export function ingestAttempt(a) {
   let patientId = patientIdFrom(a.user_identifier);
+  if (patientId && !store.getPatient(patientId)) {
+    patientId = null;
+  }
   if (!patientId && a.user_phone_number) {
     const match = store.listPatients().find((p) => normalizePhone(p.phone) === a.user_phone_number);
     patientId = match?.id ?? null;
@@ -643,4 +647,93 @@ export async function setCampaignStatus(action) {
   store.logActivity('campaign', `Campaign ${action}d → ${res.status}.`);
   return res;
 }
+
+/**
+ * Master Column Campaign Dispatch:
+ * Called when the receptionist clicks the master campaign button in Morning, Evening, or Dinner column headers.
+ * Resolves all pending numbers in that column, creates a dedicated campaign batch, and triggers outbound calls.
+ */
+export async function dispatchColumnCampaign({ column, patientIds = null, createCampaign = false, force = true } = {}) {
+  const normCol = String(column || '').trim().toLowerCase();
+  if (!['morning', 'evening', 'dinner', 'try-again'].includes(normCol)) {
+    throw new AppError(400, 'Invalid column slot. Must be morning, evening, dinner, or try-again.');
+  }
+
+  const { dateIST, timeFormatted } = getKolkataDateTime();
+  let targetIds = Array.isArray(patientIds) ? patientIds.map(Number).filter(Number.isInteger) : [];
+
+  if (!targetIds.length) {
+    const all = store.listPatients();
+    targetIds = all
+      .filter((p) => {
+        if (normCol === 'try-again') {
+          const raw = (p.call_status || '').toUpperCase();
+          return raw.includes('MISS') || raw.includes('FAIL') || raw.includes('BUSY');
+        }
+        const medField = normCol === 'morning' ? p.morning_medicines : normCol === 'evening' ? p.evening_medicines : p.dinner_medicines;
+        if (!medField || !medField.trim()) return false;
+        if (!force && store.isDispatched(p.id, normCol, dateIST)) return false;
+        return true;
+      })
+      .map((p) => p.id);
+  }
+
+  if (!targetIds.length) {
+    throw new AppError(400, `No pending patients found in ${normCol} column to call.`);
+  }
+
+  let campaignId = activeCampaignId();
+  if (createCampaign && !config.dryRun) {
+    try {
+      const body = sarvam.buildCreateCampaignBody({
+        name: `${config.clinicName} ${normCol.toUpperCase()} Campaign`,
+        days: 30,
+      });
+      const newCamp = await sarvam.createCampaign(body);
+      campaignId = newCamp.campaign_id;
+      store.setSetting('campaign_id', campaignId);
+      config.campaignIdEnv = campaignId;
+      store.logActivity('campaign', `Created dedicated campaign "${newCamp.name}" (${newCamp.campaign_id}) for ${normCol} batch.`);
+    } catch (cErr) {
+      console.warn(`[dispatch-column] Could not create new campaign: ${cErr.message}. Falling back to active campaign.`);
+      campaignId = await ensureActiveCampaign();
+    }
+  } else {
+    campaignId = config.dryRun ? 'DRY_RUN_CAMPAIGN' : await ensureActiveCampaign();
+  }
+
+  const colLabel = normCol === 'try-again' ? 'Try Again' : (normCol.charAt(0).toUpperCase() + normCol.slice(1));
+  const cohortName = `${config.clinicName} — ${colLabel} Campaign (${timeFormatted} IST)`;
+  const slotToUse = normCol === 'try-again' ? null : normCol;
+
+  const queueRes = await queuePatients(targetIds, {
+    slot: slotToUse,
+    force: force !== false,
+    cohortName,
+  });
+
+  const cohortId = queueRes?.cohort?.cohort_id || (queueRes?.dryRun ? 'dry_run' : null);
+
+  for (const id of targetIds) {
+    store.recordDispatch(id, normCol, dateIST, cohortId);
+  }
+
+  store.logActivity(
+    'campaign',
+    `Master Call [${colLabel}]: Dispatched ${queueRes.queued || targetIds.length} patient(s) via campaign batch.`
+  );
+
+  return {
+    success: true,
+    column: normCol,
+    queued: queueRes.queued,
+    skipped: queueRes.skipped,
+    cohortId,
+    campaignId,
+    dryRun: queueRes.dryRun,
+    time: timeFormatted,
+    date: dateIST,
+  };
+}
+
 

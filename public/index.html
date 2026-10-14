@@ -279,16 +279,26 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg max-w-7xl pb-8" id="board-columns-container">
             <!-- Column 1: Morning -->
             <section class="kanban-column flex flex-col bg-surface-container-low border border-outline-variant" data-stage-id="morning">
-              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-on-surface-variant"></span>
-                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">Morning</h2>
-                  <span class="text-[10px] font-mono-data text-on-surface-variant tracking-normal font-normal">(&lt; 12:00)</span>
-                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold">4</span>
+              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="w-2 h-2 bg-on-surface-variant shrink-0"></span>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase truncate">Morning</h2>
+                  <span class="text-[10px] font-mono-data text-on-surface-variant tracking-normal font-normal shrink-0">(&lt; 12:00)</span>
+                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold shrink-0">0</span>
                 </div>
-                <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Morning" onclick="quickAddCard('morning')">
-                  <span class="material-symbols-outlined text-[16px]">add</span>
-                </button>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button type="button" 
+                    id="btn-campaign-morning"
+                    class="master-campaign-btn inline-flex items-center gap-1 px-2.5 py-1 bg-primary text-on-primary hover:bg-neutral-800 border border-primary text-[11px] font-mono-data uppercase tracking-wider font-semibold cursor-pointer active:scale-95 transition-none shadow-none disabled:opacity-40 disabled:cursor-not-allowed" 
+                    title="Create campaign &amp; call all pending numbers in Morning" 
+                    onclick="runColumnCampaign('morning')">
+                    <span class="material-symbols-outlined text-[13px]">campaign</span>
+                    <span class="campaign-btn-text">Call All Pending</span>
+                  </button>
+                  <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Morning" onclick="quickAddCard('morning')">
+                    <span class="material-symbols-outlined text-[16px]">add</span>
+                  </button>
+                </div>
               </header>
               <div class="cards-drop-zone p-space-sm flex flex-col gap-space-sm min-h-[500px] overflow-y-auto" data-stage="morning">
                 <!-- Cards added dynamically -->
@@ -297,16 +307,26 @@
 
             <!-- Column 2: Evening -->
             <section class="kanban-column flex flex-col bg-surface-container-low border border-outline-variant" data-stage-id="evening">
-              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-on-surface-variant"></span>
-                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">Evening</h2>
-                  <span class="text-[10px] font-mono-data text-on-surface-variant tracking-normal font-normal">(12:00 – 18:00)</span>
-                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold">5</span>
+              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="w-2 h-2 bg-on-surface-variant shrink-0"></span>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase truncate">Evening</h2>
+                  <span class="text-[10px] font-mono-data text-on-surface-variant tracking-normal font-normal shrink-0">(12:00 – 18:00)</span>
+                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold shrink-0">0</span>
                 </div>
-                <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Evening" onclick="quickAddCard('evening')">
-                  <span class="material-symbols-outlined text-[16px]">add</span>
-                </button>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button type="button" 
+                    id="btn-campaign-evening"
+                    class="master-campaign-btn inline-flex items-center gap-1 px-2.5 py-1 bg-primary text-on-primary hover:bg-neutral-800 border border-primary text-[11px] font-mono-data uppercase tracking-wider font-semibold cursor-pointer active:scale-95 transition-none shadow-none disabled:opacity-40 disabled:cursor-not-allowed" 
+                    title="Create campaign &amp; call all pending numbers in Evening" 
+                    onclick="runColumnCampaign('evening')">
+                    <span class="material-symbols-outlined text-[13px]">campaign</span>
+                    <span class="campaign-btn-text">Call All Pending</span>
+                  </button>
+                  <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Evening" onclick="quickAddCard('evening')">
+                    <span class="material-symbols-outlined text-[16px]">add</span>
+                  </button>
+                </div>
               </header>
               <div class="cards-drop-zone p-space-sm flex flex-col gap-space-sm min-h-[500px] overflow-y-auto" data-stage="evening">
                 <!-- Cards added dynamically -->
@@ -315,16 +335,26 @@
 
             <!-- Column 3: Dinner -->
             <section class="kanban-column flex flex-col bg-surface-container-low border border-outline-variant" data-stage-id="dinner">
-              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-on-surface-variant"></span>
-                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">Dinner</h2>
-                  <span class="text-[10px] font-mono-data text-on-surface-variant tracking-normal font-normal">(&gt; 18:00)</span>
-                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold">6</span>
+              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="w-2 h-2 bg-on-surface-variant shrink-0"></span>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase truncate">Dinner</h2>
+                  <span class="text-[10px] font-mono-data text-on-surface-variant tracking-normal font-normal shrink-0">(&gt; 18:00)</span>
+                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold shrink-0">0</span>
                 </div>
-                <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Dinner" onclick="quickAddCard('dinner')">
-                  <span class="material-symbols-outlined text-[16px]">add</span>
-                </button>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button type="button" 
+                    id="btn-campaign-dinner"
+                    class="master-campaign-btn inline-flex items-center gap-1 px-2.5 py-1 bg-primary text-on-primary hover:bg-neutral-800 border border-primary text-[11px] font-mono-data uppercase tracking-wider font-semibold cursor-pointer active:scale-95 transition-none shadow-none disabled:opacity-40 disabled:cursor-not-allowed" 
+                    title="Create campaign &amp; call all pending numbers in Dinner" 
+                    onclick="runColumnCampaign('dinner')">
+                    <span class="material-symbols-outlined text-[13px]">campaign</span>
+                    <span class="campaign-btn-text">Call All Pending</span>
+                  </button>
+                  <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Dinner" onclick="quickAddCard('dinner')">
+                    <span class="material-symbols-outlined text-[16px]">add</span>
+                  </button>
+                </div>
               </header>
               <div class="cards-drop-zone p-space-sm flex flex-col gap-space-sm min-h-[500px] overflow-y-auto" data-stage="dinner">
                 <!-- Cards added dynamically -->
@@ -336,15 +366,25 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg max-w-7xl pb-8" id="additional-columns-container">
             <!-- Try Again -->
             <section class="kanban-column flex flex-col bg-surface-container-low border border-outline-variant" data-stage-id="try-again">
-              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-on-surface-variant"></span>
-                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">Try Again</h2>
-                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold">3</span>
+              <header class="p-space-md bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="w-2 h-2 bg-on-surface-variant shrink-0"></span>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase truncate">Try Again</h2>
+                  <span class="column-count font-mono-data text-code-param px-1.5 py-0.5 bg-surface-container-high text-on-surface border border-outline-variant font-semibold shrink-0">0</span>
                 </div>
-                <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Try Again" onclick="quickAddCard('try-again')">
-                  <span class="material-symbols-outlined text-[16px]">add</span>
-                </button>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button type="button" 
+                    id="btn-campaign-try-again"
+                    class="master-campaign-btn inline-flex items-center gap-1 px-2.5 py-1 bg-primary text-on-primary hover:bg-neutral-800 border border-primary text-[11px] font-mono-data uppercase tracking-wider font-semibold cursor-pointer active:scale-95 transition-none shadow-none disabled:opacity-40 disabled:cursor-not-allowed" 
+                    title="Create campaign &amp; retry all numbers in Try Again" 
+                    onclick="runColumnCampaign('try-again')">
+                    <span class="material-symbols-outlined text-[13px]">campaign</span>
+                    <span class="campaign-btn-text">Call All (0)</span>
+                  </button>
+                  <button class="add-card-quick p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-none cursor-pointer" title="Quick add to Try Again" onclick="quickAddCard('try-again')">
+                    <span class="material-symbols-outlined text-[16px]">add</span>
+                  </button>
+                </div>
               </header>
               <div class="cards-drop-zone p-space-sm flex flex-col gap-space-sm min-h-[500px] overflow-y-auto" data-stage="try-again">
                 <!-- Cards added dynamically -->
@@ -1061,12 +1101,48 @@
     </div>
   </div>
 
+  <!-- ========================================================================= -->
+  <!-- MASTER CAMPAIGN LAUNCH MODAL (Column Batch Voice Reminders)               -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-0 z-50 hidden flex items-center justify-center p-space-md sm:p-space-lg" id="campaignConfirmModal">
+    <div class="fixed inset-0 bg-primary/40 transition-none" onclick="closeCampaignConfirmModal()"></div>
+    <div class="relative bg-surface-container-lowest border border-outline w-full max-w-xl p-space-lg shadow-2xl flex flex-col gap-space-md z-10">
+      <div class="flex items-start justify-between border-b border-outline-variant pb-space-sm">
+        <div>
+          <span class="font-mono-data text-mono-data text-on-surface-variant uppercase text-label-sm" id="campaignModalSlotBadge">Schedule Matrix · Master Outbound Campaign</span>
+          <h3 class="font-headline-lg text-headline-lg text-primary font-bold" id="campaignModalTitle">Launch Morning Campaign</h3>
+        </div>
+        <button class="h-8 w-8 flex items-center justify-center border border-outline-variant hover:border-primary text-primary cursor-pointer" onclick="closeCampaignConfirmModal()" type="button" title="Close dialog (Esc)">
+          <span class="material-symbols-outlined text-[16px]">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-space-md max-h-[60vh] overflow-y-auto" id="campaignModalBody">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="flex items-center justify-between pt-space-sm border-t border-outline-variant gap-3">
+        <label class="flex items-center gap-1.5 font-mono-data text-[11px] text-on-surface-variant cursor-pointer select-none">
+          <input type="checkbox" id="skipCampaignConfirmCheck" class="cursor-pointer" />
+          <span>Direct launch next time</span>
+        </label>
+        <div class="flex items-center gap-space-sm shrink-0">
+          <button class="h-8 px-space-md border border-outline-variant font-label-md text-label-md hover:border-primary cursor-pointer" onclick="closeCampaignConfirmModal()" type="button">Cancel</button>
+          <button class="h-8 px-space-md bg-primary text-on-primary font-label-md text-label-md hover:bg-neutral-800 border border-primary flex items-center gap-1.5 cursor-pointer font-semibold" id="btnConfirmLaunchCampaign" type="button">
+            <span class="material-symbols-outlined text-[15px]">campaign</span>
+            <span id="btnConfirmLaunchCampaignText">Launch Campaign &amp; Call All</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Notification Banner Toast -->
   <div class="fixed bottom-space-lg right-space-lg z-50 hidden bg-primary text-on-primary border border-primary px-space-lg py-space-sm font-mono-data text-mono-data flex items-center gap-space-sm shadow-md" id="toastNotification">
     <span class="material-symbols-outlined text-[18px]">info</span>
     <span id="toastMessage">Voice Gateway: System operational</span>
   </div>
 
-  <script src="/app.js"></script>
+  <script src="/app.js?v=2.2"></script>
 </body>
 </html>

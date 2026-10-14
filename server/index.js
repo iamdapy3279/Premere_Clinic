@@ -176,7 +176,11 @@ const queueRateLimiter = {
 
 route('POST', '/api/queue', async ({ body }) => {
   queueRateLimiter.check();
-  return calls.queuePatients(body.patientIds, { slot: body.slot });
+  return calls.queuePatients(body.patientIds, {
+    slot: body.slot,
+    force: body.force === true,
+    cohortName: body.cohortName || null,
+  });
 });
 
 route('GET', '/api/backups', async () => ({
@@ -212,6 +216,14 @@ route('GET', '/api/attempts', async () => ({
 route('GET', '/api/campaign', async () => calls.campaignOverview());
 route('POST', '/api/campaign', async ({ body }) => calls.createCampaign(body.options ?? {}, { confirm: body.confirm === true }));
 route('POST', '/api/campaign/status', async ({ body }) => calls.setCampaignStatus(body.action));
+route('POST', '/api/campaign/dispatch-column', async ({ body }) => {
+  return calls.dispatchColumnCampaign({
+    column: body.column,
+    patientIds: body.patientIds,
+    createCampaign: body.createCampaign === true,
+    force: body.force !== false,
+  });
+});
 
 // Autonomous Runner & Toggles
 route('POST', '/api/settings/auto-dispatch', async ({ body }) => ({
@@ -251,11 +263,17 @@ async function serveStatic(pathname, res) {
   if (!file.startsWith(PUBLIC_DIR)) file = join(PUBLIC_DIR, 'index.html');
   try {
     const data = await readFile(file.endsWith('/') || !extname(file) ? join(PUBLIC_DIR, 'index.html') : file);
-    res.writeHead(200, { 'Content-Type': MIME[extname(file)] ?? 'text/html; charset=utf-8' });
+    res.writeHead(200, {
+      'Content-Type': MIME[extname(file)] ?? 'text/html; charset=utf-8',
+      'Cache-Control': 'no-cache, must-revalidate'
+    });
     res.end(data);
   } catch {
     const data = await readFile(join(PUBLIC_DIR, 'index.html'));
-    res.writeHead(200, { 'Content-Type': MIME['.html'] });
+    res.writeHead(200, {
+      'Content-Type': MIME['.html'],
+      'Cache-Control': 'no-cache, must-revalidate'
+    });
     res.end(data);
   }
 }

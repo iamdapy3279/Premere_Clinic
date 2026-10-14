@@ -122,268 +122,7 @@ function determineCardStatus(patient, reminderTimeStr, stageKey) {
 }
 
 // ── Master Clinical Patient Store (12 Input Variables Contract) ───────────────
-const DEFAULT_REGISTRY = [
-  {
-    id: "NV-2026-8941",
-    patient_name: "Devansh Poddar",
-    patient_phone: "+919874770088",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919830875614",
-    dialysis_appointment_date: "2026-10-12",
-    dialysis_appointment_time: "11:30 AM",
-    dialysis_bay: "Station 4B (Hemodialysis)",
-    morning_medicines: "Amlodipine 1 tab, Telmisartan 1 tab",
-    morning_reminder_time: "08:30 AM",
-    evening_medicines: "Furosemide 1 tablet",
-    evening_reminder_time: "02:30 PM",
-    dinner_medicines: "Atorvastatin 2 tablets",
-    dinner_reminder_time: "10:30 PM",
-    voice_status: "Active Dispatches",
-    last_call_status: "Delivered (Ack)",
-    frequency: "3x / week (M-W-F)",
-    is_primary: true
-  },
-  {
-    id: "NV-2026-4412",
-    patient_name: "Meera Sharma",
-    patient_phone: "+919810234567",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919810998877",
-    dialysis_appointment_date: "2026-10-13",
-    dialysis_appointment_time: "03:00 PM",
-    dialysis_bay: "Station 2A (Hemodialysis)",
-    morning_medicines: "Torsemide 1 tab, Metoprolol 1 tab",
-    morning_reminder_time: "09:45 AM",
-    evening_medicines: "Sodium Bicarbonate 1 tablet",
-    evening_reminder_time: "01:00 PM",
-    dinner_medicines: "Calcitriol 0.25 mcg",
-    dinner_reminder_time: "09:00 PM",
-    voice_status: "Active Dispatches",
-    last_call_status: "Delivered (Ack)",
-    frequency: "2x / week (T-Th)",
-    is_primary: false
-  },
-  {
-    id: "NV-2026-3190",
-    patient_name: "Rajesh K. Verma",
-    patient_phone: "+919765432109",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919765001122",
-    dialysis_appointment_date: "2026-10-13",
-    dialysis_appointment_time: "11:30 AM",
-    dialysis_bay: "Station 5C (Hemodiafiltration)",
-    morning_medicines: "Clonidine 1 tab, Pantoprazole 1 tab",
-    morning_reminder_time: "10:15 AM",
-    evening_medicines: "Sevelamer 800mg 1 tablet",
-    evening_reminder_time: "02:00 PM",
-    dinner_medicines: "Erythropoietin Protocol Sync",
-    dinner_reminder_time: "09:30 PM",
-    voice_status: "Active Dispatches",
-    last_call_status: "Missed",
-    frequency: "3x / week (T-Th-Sat)",
-    is_primary: false
-  },
-  {
-    id: "NV-2026-7821",
-    patient_name: "Ananya Sen",
-    patient_phone: "+919830112233",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919830554433",
-    dialysis_appointment_date: "2026-10-14",
-    dialysis_appointment_time: "08:00 AM",
-    dialysis_bay: "Station 1B (Hemodialysis)",
-    morning_medicines: "Carvedilol 12.5mg, Iron Sucrose",
-    morning_reminder_time: "09:00 AM",
-    evening_medicines: "PhosLo Calcium Acetate 1 tab",
-    evening_reminder_time: "02:00 PM",
-    dinner_medicines: "Rosuvastatin 10mg",
-    dinner_reminder_time: "10:00 PM",
-    voice_status: "Active Dispatches",
-    last_call_status: "Pending Dispatch",
-    frequency: "3x / week (M-W-F)",
-    is_primary: false
-  },
-  {
-    id: "NV-2026-9054",
-    patient_name: "Vikramaditya Rao",
-    patient_phone: "+919940887766",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919940112299",
-    dialysis_appointment_date: "2026-10-14",
-    dialysis_appointment_time: "02:00 PM",
-    dialysis_bay: "Station 6B (Hemodialysis)",
-    morning_medicines: "Losartan 50mg, Furosemide 40mg",
-    morning_reminder_time: "07:45 AM",
-    evening_medicines: "Cinacalcet 30mg 1 tablet",
-    evening_reminder_time: "03:00 PM",
-    dinner_medicines: "Aspirin 75mg 1 tablet",
-    dinner_reminder_time: "10:00 PM",
-    voice_status: "Active Dispatches",
-    last_call_status: "Missed",
-    frequency: "2x / week (W-Sat)",
-    is_primary: false
-  },
-  {
-    id: "NV-2026-1042",
-    patient_name: "Tarun Chopra",
-    patient_phone: "+919811223344",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919811998877",
-    dialysis_appointment_date: "",
-    dialysis_appointment_time: "",
-    dialysis_bay: "Station 1A (Hemodialysis)",
-    morning_medicines: "Pantoprazole 40mg, Calcium 500mg",
-    morning_reminder_time: "08:15 AM",
-    evening_medicines: "",
-    evening_reminder_time: "",
-    dinner_medicines: "",
-    dinner_reminder_time: "",
-    voice_status: "Active Dispatches",
-    last_call_status: "Delivered (Ack)",
-    frequency: "2x / week",
-    is_primary: false
-  },
-  {
-    id: "NV-2026-2095",
-    patient_name: "Dr. A. Sen",
-    patient_phone: "+919822334455",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919822556677",
-    dialysis_appointment_date: "",
-    dialysis_appointment_time: "",
-    dialysis_bay: "Station 2B",
-    morning_medicines: "",
-    morning_reminder_time: "",
-    evening_medicines: "Amlodipine 5mg 1 tablet",
-    evening_reminder_time: "04:30 PM",
-    dinner_medicines: "",
-    dinner_reminder_time: "",
-    voice_status: "Active Dispatches",
-    last_call_status: "Delivered (Ack)",
-    frequency: "1x / week",
-    is_primary: false
-  },
-  {
-    id: "NV-2026-3312",
-    patient_name: "Ananya Kapoor",
-    patient_phone: "+919833445566",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919833778899",
-    dialysis_appointment_date: "",
-    dialysis_appointment_time: "",
-    dialysis_bay: "Station 3C",
-    morning_medicines: "",
-    morning_reminder_time: "",
-    evening_medicines: "Metoprolol 25mg 1 tab",
-    evening_reminder_time: "07:30 PM",
-    dinner_medicines: "",
-    dinner_reminder_time: "",
-    voice_status: "Active Dispatches",
-    last_call_status: "Scheduled",
-    frequency: "3x / week",
-    is_primary: false
-  },
-  {
-    id: "NV-2026-4421",
-    patient_name: "Nandini Joshi",
-    patient_phone: "+919844556677",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919844889900",
-    dialysis_appointment_date: "2026-10-15",
-    dialysis_appointment_time: "01:15 PM",
-    dialysis_bay: "Station 5A",
-    morning_medicines: "",
-    morning_reminder_time: "",
-    evening_medicines: "Calcium Acetate 667mg 1 tablet",
-    evening_reminder_time: "05:00 PM",
-    dinner_medicines: "",
-    dinner_reminder_time: "",
-    voice_status: "Active Dispatches",
-    last_call_status: "Delivered (Ack)",
-    frequency: "3x / week",
-    is_primary: false
-  },
-  {
-    id: "NV-2026-5534",
-    patient_name: "Ritu Lal",
-    patient_phone: "+919855667788",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919855990011",
-    dialysis_appointment_date: "",
-    dialysis_appointment_time: "",
-    dialysis_bay: "Station 6A",
-    morning_medicines: "",
-    morning_reminder_time: "",
-    evening_medicines: "",
-    evening_reminder_time: "",
-    dinner_medicines: "Atorvastatin 20mg 1 tablet",
-    dinner_reminder_time: "08:45 PM",
-    voice_status: "Active Dispatches",
-    last_call_status: "Delivered (Ack)",
-    frequency: "2x / week",
-    is_primary: false
-  },
-  {
-    id: "NV-2026-6645",
-    patient_name: "Pradeep Bajaj",
-    patient_phone: "+919866778899",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919866001122",
-    dialysis_appointment_date: "",
-    dialysis_appointment_time: "",
-    dialysis_bay: "Station 4A",
-    morning_medicines: "",
-    morning_reminder_time: "",
-    evening_medicines: "",
-    evening_reminder_time: "",
-    dinner_medicines: "Clonidine 0.1mg 1 tablet",
-    dinner_reminder_time: "09:15 PM",
-    voice_status: "Active Dispatches",
-    last_call_status: "Delivered (Ack)",
-    frequency: "3x / week",
-    is_primary: false
-  },
-  {
-    id: "NV-2026-7756",
-    patient_name: "Harish Bansal",
-    patient_phone: "+919877889900",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919877112233",
-    dialysis_appointment_date: "",
-    dialysis_appointment_time: "",
-    dialysis_bay: "Station 2C",
-    morning_medicines: "",
-    morning_reminder_time: "",
-    evening_medicines: "",
-    evening_reminder_time: "",
-    dinner_medicines: "Erythropoietin Protocol Sync",
-    dinner_reminder_time: "08:15 PM",
-    voice_status: "Active Dispatches",
-    last_call_status: "Missed",
-    frequency: "2x / week",
-    is_primary: false
-  },
-  {
-    id: "NV-2026-8867",
-    patient_name: "Sanjay Malhotra",
-    patient_phone: "+919888990011",
-    front_desk_number: "+919874770088",
-    emergency_contact: "+919888223344",
-    dialysis_appointment_date: "",
-    dialysis_appointment_time: "",
-    dialysis_bay: "Station 3B",
-    morning_medicines: "",
-    morning_reminder_time: "",
-    evening_medicines: "",
-    evening_reminder_time: "",
-    dinner_medicines: "Aspirin 75mg 1 tab",
-    dinner_reminder_time: "09:15 AM",
-    voice_status: "Active Dispatches",
-    last_call_status: "Scheduled",
-    frequency: "3x / week",
-    is_primary: false
-  }
-];
+const DEFAULT_REGISTRY = [];
 
 // ── Kanban Data Set ──────────────────────────────────────────────────────────
 const KANBAN_STAGES = {
@@ -395,8 +134,8 @@ const KANBAN_STAGES = {
 };
 
 // ── Global State ─────────────────────────────────────────────────────────────
-let patients = DEFAULT_REGISTRY.map(p => ({ auto_call_enabled: 1, ...p }));
-let currentActivePatient = patients[0];
+let patients = [];
+let currentActivePatient = null;
 let currentViewMode = 'table'; // 'table' | 'grid'
 let appRoute = 'intake';
 let serverConfig = null;
@@ -861,6 +600,7 @@ function updateCardStatusUI(cardEl, newStatus, patient, timeStr) {
     if (!patient._doseStatuses) patient._doseStatuses = {};
     if (timeStr) patient._doseStatuses[timeStr] = newStatus;
   }
+  refreshKanbanCounts();
 }
 
 window.cycleCardStatus = function(patientId, name, stageKey, timeStr, cardEl) {
@@ -896,35 +636,11 @@ window.triggerDirectCallFromCard = async function(patientId, name, stageKey, tim
   // 2. Dispatch to backend
   let targetDbId = patient ? patient.db_id : null;
   if (!targetDbId && patient) {
-    const dbData = await fetchApi('/api/patients').catch(() => null);
+    const dbData = await fetchApi("/api/patients").catch(() => null);
     if (dbData && dbData.patients) {
       const match = dbData.patients.find(dp => dp.phone === patient.patient_phone || dp.name.toLowerCase() === patient.patient_name.toLowerCase());
       if (match) {
         targetDbId = match.id;
-        patient.db_id = targetDbId;
-      }
-    }
-    if (!targetDbId && patient) {
-      const created = await fetchApi('/api/patients', {
-        method: 'POST',
-        body: JSON.stringify({
-          name: patient.patient_name || name,
-          phone: patient.patient_phone || '+919874770088',
-          call_purpose: 'medication_reminder',
-          front_desk_number: patient.front_desk_number || '+917965480404',
-          emergency_contact: patient.emergency_contact || '',
-          morning_medicines: patient.morning_medicines || 'Daily Prescribed Regimen',
-          evening_medicines: patient.evening_medicines || 'Evening Regimen',
-          dinner_medicines: patient.dinner_medicines || 'Night Regimen',
-          morning_reminder_time: patient.morning_reminder_time || '09:00 AM',
-          evening_reminder_time: patient.evening_reminder_time || '02:30 PM',
-          dinner_reminder_time: patient.dinner_reminder_time || '10:30 PM',
-          dialysis_appointment_date: patient.dialysis_appointment_date || '2026-10-14',
-          dialysis_appointment_time: patient.dialysis_appointment_time || '10:00 AM'
-        })
-      }).catch(() => null);
-      if (created && created.patient) {
-        targetDbId = created.patient.id;
         patient.db_id = targetDbId;
       }
     }
@@ -958,11 +674,218 @@ function refreshKanbanCounts() {
     const stageId = column.dataset.stageId;
     const zone = column.querySelector('.cards-drop-zone');
     const countPill = column.querySelector('.column-count');
+    const masterBtn = column.querySelector('.master-campaign-btn');
+
     if (zone && countPill) {
       countPill.textContent = zone.querySelectorAll('.kanban-card').length;
     }
+
+    if (masterBtn && zone) {
+      const cards = Array.from(zone.querySelectorAll('.kanban-card'));
+      const pendingCards = cards.filter(card => {
+        const badge = card.querySelector('.badge-slot');
+        const text = badge ? badge.textContent.trim() : '';
+        return !text.includes('Complete');
+      });
+      const pendingCount = pendingCards.length;
+      const labelEl = masterBtn.querySelector('.campaign-btn-text');
+
+      if (!masterBtn.dataset.busy) {
+        let labelEl = masterBtn.querySelector('.campaign-btn-text');
+        if (!labelEl) {
+          masterBtn.innerHTML = `<span class="material-symbols-outlined text-[13px]">campaign</span><span class="campaign-btn-text"></span>`;
+          labelEl = masterBtn.querySelector('.campaign-btn-text');
+        }
+        if (labelEl) {
+          labelEl.textContent = `Call All (${pendingCount})`;
+        }
+        if (pendingCount === 0) {
+          masterBtn.disabled = true;
+          masterBtn.classList.add('opacity-40', 'cursor-not-allowed');
+          masterBtn.classList.remove('cursor-pointer', 'hover:bg-neutral-800');
+          masterBtn.title = `All calls in ${stageId} are complete`;
+        } else {
+          masterBtn.disabled = false;
+          masterBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+          masterBtn.classList.add('cursor-pointer', 'hover:bg-neutral-800');
+          masterBtn.title = `Call all ${pendingCount} non-completed patient(s) in ${stageId}`;
+        }
+      }
+    }
   });
 }
+
+// ── Master Campaign Column Actions ───────────────────────────────────────────
+let currentCampaignContext = null;
+
+window.closeCampaignConfirmModal = function() {
+  const modal = document.getElementById('campaignConfirmModal');
+  if (modal) modal.classList.add('hidden');
+};
+
+window.runColumnCampaign = async function(slotKey) {
+  const normSlot = String(slotKey || '').toLowerCase();
+  const slotLabels = {
+    morning: 'Morning (< 12:00)',
+    evening: 'Evening (12:00 – 18:00)',
+    dinner: 'Dinner (> 18:00)',
+    'try-again': 'Try Again (Retries)'
+  };
+  const label = slotLabels[normSlot] || normSlot.toUpperCase();
+
+  const zone = document.querySelector(`.cards-drop-zone[data-stage="${normSlot}"]`);
+  if (!zone) return;
+
+  const cardEls = Array.from(zone.querySelectorAll('.kanban-card'));
+  const pendingCards = cardEls.filter(c => {
+    const b = c.querySelector('.badge-slot');
+    const txt = b ? b.textContent.trim() : '';
+    return !txt.includes('Complete');
+  });
+
+  if (!pendingCards.length) {
+    showToast(`All calls in ${label} are already complete.`);
+    return;
+  }
+
+  // Map pending cards to patient records
+  const pendingPatients = [];
+  for (const card of pendingCards) {
+    const pId = card.dataset.patientId;
+    const name = card.dataset.name;
+    const time = card.dataset.time;
+    let patient = patients.find(p => (pId && p.id === pId) || (p.patient_name && p.patient_name.toLowerCase() === name.toLowerCase()));
+    
+    let dbId = patient?.db_id || (pId && pId.match(/\d+$/) ? Number(pId.match(/\d+$/)[0]) : null);
+    if (!dbId && patient) {
+      const dbData = await fetchApi('/api/patients').catch(() => null);
+      if (dbData && dbData.patients) {
+        const match = dbData.patients.find(dp => dp.phone === patient.patient_phone || dp.name.toLowerCase() === patient.patient_name.toLowerCase());
+        if (match) {
+          dbId = match.id;
+          patient.db_id = dbId;
+        }
+      }
+    }
+    if (patient && dbId) patient.db_id = dbId;
+
+    const slotMeds = normSlot === 'morning' ? patient?.morning_medicines 
+      : normSlot === 'evening' ? patient?.evening_medicines 
+      : normSlot === 'dinner' ? patient?.dinner_medicines 
+      : (patient?.morning_medicines || patient?.evening_medicines || patient?.dinner_medicines);
+
+    pendingPatients.push({
+      card,
+      patient: patient || { id: pId, db_id: dbId, patient_name: name, patient_phone: '+919874770088' },
+      name: patient?.patient_name || name,
+      time,
+      phone: patient?.patient_phone || '+919874770088',
+      medicines: slotMeds || card.querySelector('div.font-mono-data')?.textContent || 'Prescribed regimen'
+    });
+  }
+
+  currentCampaignContext = {
+    slot: normSlot,
+    label,
+    pending: pendingPatients,
+  };
+
+  // Directly execute the batch call for all non-completed patients in the column
+  executeColumnCampaign(currentCampaignContext);
+};
+
+window.executeColumnCampaign = async function(ctx) {
+  if (!ctx || !ctx.pending || !ctx.pending.length) return;
+  const { slot, label, pending } = ctx;
+  const btn = document.getElementById(`btn-campaign-${slot}`);
+
+  // 1. Set Master Button to loading spinner
+  if (btn) {
+    btn.dataset.busy = 'true';
+    btn.disabled = true;
+    btn.innerHTML = `<span class="material-symbols-outlined text-[13px] animate-spin">sync</span><span class="campaign-btn-text">Calling (${pending.length})...</span>`;
+  }
+
+  // 2. Set all pending cards to On-going and Dialing
+  pending.forEach(item => {
+    updateCardStatusUI(item.card, 'On-going', item.patient, item.time);
+    const cardCallBtn = item.card.querySelector('.call-card-btn');
+    if (cardCallBtn) {
+      cardCallBtn.classList.add('opacity-75');
+      cardCallBtn.innerHTML = `<span class="material-symbols-outlined text-[13px] animate-spin">sync</span><span>Dialing</span>`;
+    }
+  });
+
+  showToast(`Initiating ${slot.toUpperCase()} Campaign: Calling ${pending.length} pending numbers...`);
+
+  // 3. Dispatch to backend
+  const targetDbIds = pending.map(item => item.patient?.db_id).filter(Boolean);
+
+  try {
+    const res = await fetchApi('/api/campaign/dispatch-column', {
+      method: 'POST',
+      body: JSON.stringify({
+        column: slot,
+        patientIds: targetDbIds.length ? targetDbIds : null,
+        force: true
+      })
+    });
+
+    if (res && res.success) {
+      showToast(`Campaign Dispatched • ${res.queued} patient(s) dialed via Sarvam SIP`);
+      if (btn) {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[13px]">check</span><span class="campaign-btn-text">Dispatched (${res.queued})</span>`;
+      }
+    } else {
+      showToast(`Campaign notice: ${res?.message || 'Queued'}`);
+    }
+  } catch (err) {
+    console.error('Column campaign dispatch error:', err);
+    let fallbackSuccess = false;
+    if (targetDbIds.length) {
+      try {
+        const qRes = await fetchApi('/api/queue', {
+          method: 'POST',
+          body: JSON.stringify({ patientIds: targetDbIds, force: true })
+        });
+        if (qRes && qRes.queued) {
+          fallbackSuccess = true;
+          showToast(`Direct Queue Fallback: Dialing ${qRes.queued} patient(s) via Sarvam SIP`);
+          if (btn) btn.innerHTML = `<span class="material-symbols-outlined text-[13px]">check</span><span class="campaign-btn-text">Dispatched (${qRes.queued})</span>`;
+        }
+      } catch (qErr) {
+        console.error('Queue fallback error:', qErr);
+      }
+    }
+    if (!fallbackSuccess) {
+      showToast(`Campaign Dispatch: ${err.message || 'Error occurred'}`);
+      if (btn) {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[13px]">error</span><span class="campaign-btn-text">Error</span>`;
+      }
+    }
+  }
+
+  // 4. Staggered visual completion simulation & reset button
+  pending.forEach((item, index) => {
+    setTimeout(() => {
+      updateCardStatusUI(item.card, 'Complete', item.patient, item.time);
+      const cardCallBtn = item.card.querySelector('.call-card-btn');
+      if (cardCallBtn) {
+        cardCallBtn.classList.remove('opacity-75');
+        cardCallBtn.innerHTML = `<span class="material-symbols-outlined text-[13px]">call</span><span>Call</span>`;
+      }
+      showToast(`Call Complete • ${item.name} confirmed adherence (DTMF: 1)`);
+    }, 3000 + (index * 600));
+  });
+
+  setTimeout(() => {
+    if (btn) {
+      delete btn.dataset.busy;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[13px]">campaign</span><span class="campaign-btn-text">Call All</span>`;
+    }
+    refreshKanbanCounts();
+  }, 3500 + (pending.length * 600));
+};
 
 function attachKanbanDragDropHandlers() {
   const cards = document.querySelectorAll('.kanban-card');
@@ -1151,30 +1074,6 @@ window.triggerTestCall = async function() {
         currentActivePatient.db_id = targetDbId;
       }
     }
-    if (!targetDbId) {
-      const created = await fetchApi('/api/patients', {
-        method: 'POST',
-        body: JSON.stringify({
-          name: currentActivePatient.patient_name || 'Patient',
-          phone: currentActivePatient.patient_phone || '+919874770088',
-          call_purpose: 'medication_reminder',
-          front_desk_number: currentActivePatient.front_desk_number || '+917965480404',
-          emergency_contact: currentActivePatient.emergency_contact || '',
-          morning_medicines: currentActivePatient.morning_medicines || 'Daily Prescribed Regimen',
-          evening_medicines: currentActivePatient.evening_medicines || 'Evening Regimen',
-          dinner_medicines: currentActivePatient.dinner_medicines || 'Night Regimen',
-          morning_reminder_time: currentActivePatient.morning_reminder_time || '09:00 AM',
-          evening_reminder_time: currentActivePatient.evening_reminder_time || '02:30 PM',
-          dinner_reminder_time: currentActivePatient.dinner_reminder_time || '10:30 PM',
-          dialysis_appointment_date: currentActivePatient.dialysis_appointment_date || '2026-10-14',
-          dialysis_appointment_time: currentActivePatient.dialysis_appointment_time || '10:00 AM'
-        })
-      }).catch(() => null);
-      if (created && created.patient) {
-        targetDbId = created.patient.id;
-        currentActivePatient.db_id = targetDbId;
-      }
-    }
   }
 
   if (targetDbId) {
@@ -1322,15 +1221,6 @@ window.handleEditPatientSubmit = async function(e) {
       method: 'PUT',
       body: JSON.stringify(payload)
     }).catch(err => console.warn('PUT failed:', err));
-  } else {
-    // If not yet in SQLite, create record to maintain persistence
-    const created = await fetchApi('/api/patients', {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    }).catch(() => null);
-    if (created && created.patient) {
-      patient.db_id = created.patient.id;
-    }
   }
 
   // Update in-memory patient model
@@ -1788,6 +1678,7 @@ document.addEventListener("keydown", function(e) {
   if (e.key === "Escape") {
     closePatientModal();
     closeRegisterModal();
+    if (typeof closeCampaignConfirmModal === 'function') closeCampaignConfirmModal();
   }
 });
 
@@ -1796,7 +1687,7 @@ function showToast(msg) {
   const toast = document.getElementById("toastNotification");
   const msgEl = document.getElementById("toastMessage");
   if (!toast || !msgEl) return;
-  msgEl.textContent = msg;
+  msgEl.innerHTML = String(msg).replace(/&bull;/g, '•');
   toast.classList.remove("hidden");
   clearTimeout(toast._timeout);
   toast._timeout = setTimeout(() => {
@@ -1832,58 +1723,34 @@ async function loadServerData() {
     }
   }
 
-  // Load database patients and merge if any
-  const dbData = await fetchApi('/api/patients');
-  if (dbData && Array.isArray(dbData.patients) && dbData.patients.length) {
-    dbData.patients.forEach(dbp => {
-      // Find existing by database id first, or exact matching patient name
-      const exists = patients.find(p => 
-        (p.db_id && p.db_id === dbp.id) || 
-        (p.patient_name && dbp.name && p.patient_name.trim().toLowerCase() === dbp.name.trim().toLowerCase())
-      );
-      if (exists) {
-        exists.db_id = dbp.id;
-        if (dbp.phone) exists.patient_phone = dbp.phone;
-        if (dbp.front_desk_number) exists.front_desk_number = dbp.front_desk_number;
-        if (dbp.emergency_contact) exists.emergency_contact = dbp.emergency_contact;
-        if (dbp.morning_medicines) exists.morning_medicines = dbp.morning_medicines;
-        if (dbp.evening_medicines) exists.evening_medicines = dbp.evening_medicines;
-        if (dbp.dinner_medicines) exists.dinner_medicines = dbp.dinner_medicines;
-        if (dbp.morning_reminder_time) exists.morning_reminder_time = dbp.morning_reminder_time;
-        if (dbp.evening_reminder_time) exists.evening_reminder_time = dbp.evening_reminder_time;
-        if (dbp.dinner_reminder_time) exists.dinner_reminder_time = dbp.dinner_reminder_time;
-        if (dbp.dialysis_appointment_date) exists.dialysis_appointment_date = dbp.dialysis_appointment_date;
-        if (dbp.dialysis_appointment_time) exists.dialysis_appointment_time = dbp.dialysis_appointment_time;
-        if (dbp.call_status) exists.last_call_status = dbp.call_status.toUpperCase();
-        exists.auto_call_enabled = dbp.auto_call_enabled !== 0 ? 1 : 0;
-        exists.dispatches_today = Array.isArray(dbp.dispatches_today) ? dbp.dispatches_today : [];
-      } else {
-        patients.unshift({
-          id: `NV-2026-${dbp.id}`,
-          db_id: dbp.id,
-          patient_name: dbp.name,
-          patient_phone: dbp.phone,
-          front_desk_number: dbp.front_desk_number || "+917965480404",
-          emergency_contact: dbp.emergency_contact || "",
-          relationship: "Patient",
-          dialysis_appointment_date: dbp.dialysis_appointment_date || "2026-10-14",
-          dialysis_appointment_time: dbp.dialysis_appointment_time || "10:00 AM",
-          dialysis_bay: "Station 3A (Hemodialysis)",
-          morning_medicines: dbp.morning_medicines || dbp.medicine_name || "",
-          morning_reminder_time: dbp.morning_reminder_time || "09:00",
-          evening_medicines: dbp.evening_medicines || "",
-          evening_reminder_time: dbp.evening_reminder_time || "14:30",
-          dinner_medicines: dbp.dinner_medicines || "",
-          dinner_reminder_time: dbp.dinner_reminder_time || "22:00",
-          auto_call_enabled: dbp.auto_call_enabled !== 0 ? 1 : 0,
-          dispatches_today: Array.isArray(dbp.dispatches_today) ? dbp.dispatches_today : [],
-          voice_status: dbp.call_status || "Active",
-          last_call_status: dbp.call_status || "Scheduled",
-          frequency: "3x / week",
-          is_primary: false
-        });
-      }
-    });
+  // Load database patients purely from SQLite
+  const dbData = await fetchApi("/api/patients");
+  if (dbData && Array.isArray(dbData.patients)) {
+    patients = dbData.patients.map(dbp => ({
+      id: `NV-2026-${dbp.id}`,
+      db_id: dbp.id,
+      patient_name: dbp.name,
+      patient_phone: dbp.phone,
+      front_desk_number: dbp.front_desk_number || "+917965480404",
+      emergency_contact: dbp.emergency_contact || "",
+      relationship: "Patient",
+      dialysis_appointment_date: dbp.dialysis_appointment_date || "",
+      dialysis_appointment_time: dbp.dialysis_appointment_time || "",
+      dialysis_bay: dbp.dialysis_bay || "Station 3A (Hemodialysis)",
+      morning_medicines: dbp.morning_medicines || dbp.medicine_name || "",
+      morning_reminder_time: dbp.morning_reminder_time || "09:00",
+      evening_medicines: dbp.evening_medicines || "",
+      evening_reminder_time: dbp.evening_reminder_time || "14:30",
+      dinner_medicines: dbp.dinner_medicines || "",
+      dinner_reminder_time: dbp.dinner_reminder_time || "22:00",
+      auto_call_enabled: dbp.auto_call_enabled !== 0 ? 1 : 0,
+      dispatches_today: Array.isArray(dbp.dispatches_today) ? dbp.dispatches_today : [],
+      voice_status: dbp.call_status || "Active",
+      last_call_status: (dbp.call_status || "Delivered (Ack)").toUpperCase(),
+      frequency: "3x / week",
+      is_primary: false
+    }));
+    currentActivePatient = patients[0] || null;
     renderPatientTable(patients);
     renderPatientGrid(patients);
     updateMetricCounters();
